@@ -48,6 +48,16 @@ sortArr(arr);
 // -3242, -454, 0, 4, 22, 23, 324, 544, 32423
 ```
 
+## Sort arr str
+
+Sort arr of strings from shortest to longest
+
+```javascript
+const arr = ["4534", "a", "bb", "sdfds", "", " ", "r4rdv-"];
+sortArr(arr);
+// '', ' ', 'a', 'bb', '4534', 'sdfds', 'r4rdv-'
+```
+
 ## Calculate average age of users older then 17 and younger then 55
 
 ```javascript
