@@ -1,4 +1,6 @@
-# Rotate matrix
+#JS Challenge
+
+## Rotate matrix
 
 ```javascript
 const arr1 = [
@@ -31,7 +33,7 @@ rotateMatrix(arr2);
 */
 ```
 
-# Dragon Curve
+## Dragon Curve
 
 ![dragon curve](https://github.com/cos1715/javascript-challenge-2/blob/master/src/dragon-curve/dragon-curve.png?raw=trueg)
 
