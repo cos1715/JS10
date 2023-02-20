@@ -33,7 +33,7 @@ rotateMatrix(arr2);
 
 # Dragon Curve
 
-![dragon curve](dragon-curve.png)
+![dragon curve](https://github.com/cos1715/javascript-challenge-2/blob/master/src/dragon-curve/dragon-curve.png?raw=trueg)
 
 ```javascript
 // Start line doesn't cunt
