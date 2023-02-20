@@ -1,4 +1,4 @@
-#JS Challenge
+# JS Challenge
 
 ## Rotate matrix
 
