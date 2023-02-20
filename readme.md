@@ -1,48 +1,106 @@
-# JS Challenge
+# JS Homework
 
-## Rotate matrix
+Feel free to modify test data or add new data
+It will help for better testing
+
+## Capitalize words
+
+Capitalize every word in array
 
 ```javascript
-const arr1 = [
-  [1, 2],
-  [3, 4],
-];
-const arr2 = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-];
-// Example 1
-rotateMatrix(arr1);
+capitalize("my name is taras");
 // Should return
-/*
-[
-  [1,3],
-  [2,4]
-]
-*/
-// Example 2
-rotateMatrix(arr2);
-// Should return
-/* 
-[
-  [1,4,7],
-  [2,5,8],
-  [3,6,9]
-]
-*/
+("My Name Is Taras");
 ```
 
-## Dragon Curve
+## Text truncate
 
-![dragon curve](https://github.com/cos1715/javascript-challenge-2/blob/master/src/dragon-curve/dragon-curve.png?raw=trueg)
+Truncate text if it's length is bigger then maxlength and add '...' at the end.
+Resulted str with dots have to be equal to maxlength
 
 ```javascript
-// Start line doesn't cunt
-// Every left turn is 1 every right turn is 0
-dragonCurve(1); // 1
-dragonCurve(2); // 110
-dragonCurve(3); // 1101100
-dragonCurve(4); // 110110011100100
-dragonCurve(n); // ...
+truncate("Lorem ipsum dolor sit amet, consectetur", 14);
+// Lorem ipsum...
+
+truncate("Lorem ipsum dolor sit amet, consectetur", 255);
+// Lorem ipsum dolor sit amet, consectetur
+```
+
+## Filter arr
+
+Return arr of numbers with values that are in range from 'from' param and to 'to' param
+
+```javascript
+filterRange(arr, from, to);
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+filterRange(arr, 3, 7);
+// 3,4,5,6,7
+```
+
+## Sort arr
+
+Sort arr from least to biggest
+
+```javascript
+const arr = [324, 32423, -3242, 544, 0, 23, -454, 22, 4];
+sortArr(arr);
+// -3242, -454, 0, 4, 22, 23, 324, 544, 32423
+```
+
+## Calculate average age of users older then 17 and younger then 55
+
+```javascript
+const arr = [
+  { name: "John", age: 25 },
+  { name: "Pete", age: 30 },
+  { name: "Mary", age: 29 },
+  { name: "Taras", age: 25 },
+  { name: "Kate", age: 74 },
+  { name: "Chris", age: 14 },
+  { name: "Alan", age: 5 },
+  { name: "Boris", age: 55 },
+  { name: "Elizabeth", age: 48 },
+];
+
+averageAge(arr);
+// 31.4
+```
+
+## Find min and max
+
+Find min and max and return obj {min, max}
+Use reduce method
+
+```javascript
+const arr = [
+  { name: "John", age: 25 },
+  { name: "Pete", age: 30 },
+  { name: "Mary", age: 29 },
+  { name: "Taras", age: 25 },
+  { name: "Kate", age: 74 },
+  { name: "Chris", age: 14 },
+  { name: "Alan", age: 5 },
+  { name: "Boris", age: 55 },
+  { name: "Elizabeth", age: 48 },
+];
+
+minMaxAge(arr);
+// {min:5, max:74}
+```
+
+## Save only unique values
+
+Save unique values from arr to uniqueArr
+
+```javascript
+Залишити унікальні елементи масиву
+
+let strings = ["Привіт", "Світ", "Привіт", "Світ",
+  "Привіт", "Привіт", "Світ", "Світ", ":-O"
+];
+
+unique(strings)
+// Привіт, Світ, :-O
+
 ```
