@@ -1,0 +1,1 @@
+const myHomeWork = 1;
