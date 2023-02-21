@@ -23,9 +23,9 @@ findFactorial(n);
 
 ## Fibonacci
 
-Write a function for printing Fibonacci numbers
-User should enter n via prompt
-List of numbers should be equal of n
+- Write a function for printing Fibonacci numbers
+- User should enter n via prompt
+- List of numbers should be equal of n
 
 ```javascript
 findFactorial(n);
@@ -37,12 +37,12 @@ Write a function that prints a pyramid of height n
 n will be entered by the user
 The pyramid should look like this
 
------#----- //1
-----###---- //2
----#####--- //3
---#######-- //4
--#########- //5
-#######№### //6
+> -----#----- //1
+> ----###---- //2
+> ---#####--- //3
+> --#######-- //4
+> -#########- //5
+> ########### //6
 
 ```javascript
 printPyramid(n);
