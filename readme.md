@@ -149,13 +149,18 @@ minMaxAge(arr);
 Save unique values from arr to uniqueArr
 
 ```javascript
-Залишити унікальні елементи масиву
-
-let strings = ["Привіт", "Світ", "Привіт", "Світ",
-  "Привіт", "Привіт", "Світ", "Світ", ":-O"
+const strings = [
+  "Привіт",
+  "Світ",
+  "Привіт",
+  "Світ",
+  "Привіт",
+  "Привіт",
+  "Світ",
+  "Світ",
+  ":-O",
 ];
 
-unique(strings)
+unique(strings);
 // Привіт, Світ, :-O
-
 ```
