@@ -1,6 +1,6 @@
 # JS Homework
 
-Feel free to modify test data or add new data
+Feel free to modify test data or add new data  
 It will help for better testing
 
 ## Capitalize words
@@ -15,7 +15,7 @@ capitalize("my name is taras");
 
 ## Text truncate
 
-Truncate text if it's length is bigger then maxlength and add '...' at the end.
+Truncate text if it's length is bigger then maxlength and add '...' at the end.  
 Resulted str with dots have to be equal to maxlength
 
 ```javascript
@@ -124,7 +124,7 @@ sortUsers(arr);
 
 ## Find min and max
 
-Find min and max and return obj {min, max}
+Find min and max and return obj {min, max}  
 Use reduce method
 
 ```javascript
