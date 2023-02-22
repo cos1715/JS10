@@ -38,7 +38,7 @@ rotateMatrix(arr2);
 ![dragon curve](https://github.com/cos1715/javascript-challenge-2/blob/master/src/dragon-curve/dragon-curve.png?raw=trueg)
 
 ```javascript
-// Start line doesn't cunt
+// Start line doesn't count
 // Every left turn is 1 every right turn is 0
 dragonCurve(1); // 1
 dragonCurve(2); // 110
