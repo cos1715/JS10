@@ -3,120 +3,123 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Pyfagor
+## Pythagorean theorem
 
-Capitalize every word in array
+Calculate length of other side
+a*a + b*b = c\*c  
+Find c
 
 ```javascript
-capitalize("my name is taras");
-// Should return
-("My Name Is Taras");
+pythagorean(a, b);
+
+pythagorean(5, 12);
+// 13
 ```
 
 ## Show number in money format
 
-+- sign should be present
++- sign should be present  
+Separate thousands with ,
 
 ```javascript
-truncate("Lorem ipsum dolor sit amet, consectetur", 14);
-// Lorem ipsum...
+formatMoney(num);
 
-truncate("Lorem ipsum dolor sit amet, consectetur", 255);
-// Lorem ipsum dolor sit amet, consectetur
+formatMoney(1232323);
+//'+ 1,232,323.00'
+
+formatMoney(-23.2132);
+//'- 23.21'
 ```
 
 ## Format number in spaces
 
-+- sign should be present
++- sign should be present  
+Separate thousands with spaces
 
 ```javascript
-filterRange(arr, from, to);
+formatNumber(num);
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-filterRange(arr, 3, 7);
-// 3,4,5,6,7
+formatNumber(1232323);
+// 1 232 323
+
+formatNumber(1223.65378);
+// 1 223.654
 ```
 
 ## Write a password generator with length n
 
-Sort arr from least to biggest
+Generate password with any symbol  
+!"#$%&'()\*+,-./0123456789:;<=>?  
+@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^\_  
+`abcdefghijklmnopqrstuvwxyz
 
 ```javascript
-const arr = [324, 32423, -3242, 544, 0, 23, -454, 22, 4];
-sortArr(arr);
-// -3242, -454, 0, 4, 22, 23, 324, 544, 32423
+generatePassword(n);
+
+generatePassword(8);
+// 1H:s4dh$
 ```
 
 ## calculate percentage with n numbers after dot
 
-Sort arr of strings from shortest to longest
+Given 2 numbers. Calculate their percentage with n precision after dot  
+50 is 25% of 200  
+secondNum \* 100% / firstNum
 
 ```javascript
-const arr = ["4534", "a", "bb", "sdfds", "", " ", "r4rdv-"];
-sortArr(arr);
-// '', ' ', 'a', 'bb', '4534', 'sdfds', 'r4rdv-'
+calc(firstNum, secondNum, precision);
+
+calc(200, 50, 0);
+// 25
+
+calc(200, 0.14, 1);
+// 0.1
 ```
 
 ## Get integer part of number and decimal
 
-```javascript
-const arr = [
-  { name: "John", age: 25 },
-  { name: "Pete", age: 30 },
-  { name: "Mary", age: 29 },
-  { name: "Taras", age: 25 },
-  { name: "Kate", age: 74 },
-  { name: "Chris", age: 14 },
-  { name: "Alan", age: 5 },
-  { name: "Boris", age: 55 },
-  { name: "Elizabeth", age: 48 },
-];
+User enters a number  
+Get it's integer part and decimal
 
-averageAge(arr);
-// 31.4
+```javascript
+splitNumber(num);
+
+splitNumber(2);
+// {int: 2, decimal: 0}
+
+splitNumber(2.34);
+// {int: 2, decimal: 34}
 ```
 
 ## Check if prime
 
-Sort arr by name if 2 elements have same name sort by age
+Check if given number is a prime number  
+Prime numbers are numbers that is divisible without a remainder only by itself and by 1  
+Should return boolean
 
 ```javascript
-const arr = [
-  { name: "John", age: 25 },
-  { name: "John", age: 5 },
-  { name: "John", age: 2 },
-  { name: "John", age: 45 },
-  { name: "Pete", age: 30 },
-  { name: "Mary", age: 29 },
-  { name: "Mary", age: 2 },
-  { name: "Taras", age: 25 },
-  { name: "Taras", age: 19 },
-  { name: "Kate", age: 74 },
-  { name: "Chris", age: 14 },
-  { name: "Alan", age: 5 },
-  { name: "Alan", age: 32 },
-  { name: "Boris", age: 55 },
-  { name: "Elizabeth", age: 48 },
-  { name: "Elizabeth", age: 8 },
-];
+isPrime(n);
 
-sortUsers(arr);
-// [
-//   { name: "Alan", age: 5 },
-//   { name: "Alan", age: 32 },
-//   { name: "Boris", age: 55 },
-//   { name: "Chris", age: 14 },
-//   { name: "Elizabeth", age: 8 },
-//   { name: "Elizabeth", age: 48 },
-//   { name: "John", age: 2 },
-//   { name: "John", age: 5 },
-//   { name: "John", age: 25 },
-//   { name: "John", age: 45 },
-//   { name: "Kate", age: 74 },
-//   { name: "Mary", age: 2 },
-//   { name: "Mary", age: 29 },
-//   { name: "Pete", age: 30 },
-//   { name: "Taras", age: 19 },
-//   { name: "Taras", age: 25 },
-// ];
+isPrime(4);
+// false
+
+isPrime(5);
+// true
+```
+
+## Check if number is Armstrong Number
+
+An armstrong number is a number which equal to the sum of the cubes of its individual digits.  
+153 = 1\*1\*1 + 5\*5\*5 + 3\*3\*3
+153 = 1 + 125 + 27
+153 = 153
+
+```javascript
+isPrime(n);
+
+isPrime(4);
+// false
+
+isPrime(153);
+// true
 ```
