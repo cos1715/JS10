@@ -115,11 +115,11 @@ An armstrong number is a number which equal to the sum of the cubes of its indiv
 153 = 153
 
 ```javascript
-isPrime(n);
+isArmstrong(n);
 
-isPrime(4);
+isArmstrong(4);
 // false
 
-isPrime(153);
+isArmstrong(153);
 // true
 ```
