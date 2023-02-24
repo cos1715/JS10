@@ -60,7 +60,7 @@ generatePassword(8);
 // 1H:s4dh$
 ```
 
-## calculate percentage with n numbers after dot
+## Calculate percentage with n numbers after dot
 
 Given 2 numbers. Calculate their percentage with n precision after dot  
 50 is 25% of 200  
