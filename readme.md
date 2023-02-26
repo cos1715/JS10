@@ -91,3 +91,11 @@ createMap([
 ```
 
 ![map](./map.png)
+
+## Create a cache
+
+Create a cache for calcDateDiff
+
+```javascript
+cacheCalcDateDiff(startDate, endDate);
+```
