@@ -41,5 +41,5 @@ for (let i = 0; i < 100000000; i++) {
 
 const end = Date.now();
 
-console.log(end - start);
+console.log("execute time =>", end - start);
 console.log(map);
