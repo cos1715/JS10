@@ -3,123 +3,91 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Pythagorean theorem
+## Get days in year
 
-Calculate length of other side
-a*a + b*b = c\*c  
-Find c
+Return total days count
 
 ```javascript
-pythagorean(a, b);
+getDaysInYear(year);
 
-pythagorean(5, 12);
-// 13
+getDaysInYear(2021);
+// 365
+getDaysInYear(2020);
+// 366
 ```
 
-## Show number in money format
+## Get day of a year
 
-+- sign should be present  
-Separate thousands with ,
+Return day number from date
 
 ```javascript
-formatMoney(num);
+getDayNumber(date);
 
-formatMoney(1232323);
-//'+ 1,232,323.00'
+getDayNumber("2023-01-12");
+// 12
 
-formatMoney(-23.2132);
-//'- 23.21'
+getDayNumber("2023-02-26");
+// 57
 ```
 
-## Format number in spaces
+## Get fiscal quarters
 
-+- sign should be present  
-Separate thousands with spaces
+Return quarter number from date  
+I quarter: Jan - Mar  
+II quarter: Apr - Jun  
+III quarter: Jul - Sep  
+IV quarter: Oct - Dec
 
 ```javascript
-formatNumber(num);
+getQuarters(date);
 
-formatNumber(1232323);
-// 1 232 323
-
-formatNumber(1223.65378);
-// 1 223.654
+getQuarters("2023-02-26");
+// Feb 26 is I quarter
 ```
 
-## Write a password generator with length n
+## Write a function to calculate date diff
 
-Generate password with any symbol  
-!"#$%&'()\*+,-./0123456789:;<=>?  
-@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^\_  
-`abcdefghijklmnopqrstuvwxyz
+Write a function to calculate date diff  
+Return value should be a formated string  
+If diff is less then hour use minutes format
+If diff is less then day use hour and minute format  
+If diff is less then month use days format
+If diff is less then year use moth format
+Everything else can be in years format
 
 ```javascript
-generatePassword(n);
+calcDateDiff(startDate, endDate);
 
-generatePassword(8);
-// 1H:s4dh$
+calcDateDiff("2023-02-26 14:00", "2023-02-26 14:20");
+// 20 minutes
+
+calcDateDiff("2023-02-26 14:00", "2023-02-26 15:30");
+// 1 hours 30 minutes
+
+calcDateDiff("2023-02-26 14:00", "2023-02-28 15:30");
+// 2 days
+
+calcDateDiff("2023-02-26 14:00", "2023-05-28 15:30");
+// 3 months
+
+calcDateDiff("2023-02-26 14:00", "2025-05-28 15:30");
+// 2 years
 ```
 
-## Calculate percentage with n numbers after dot
+## Create a map
 
-Given 2 numbers. Calculate their percentage with n precision after dot  
-50 is 25% of 200  
-secondNum \* 100% / firstNum
+Create map from array of objects  
+Key should be id from object  
+Please add more input data
 
 ```javascript
-calc(firstNum, secondNum, precision);
+createMap(arr);
 
-calc(200, 50, 0);
-// 25
-
-calc(200, 0.14, 1);
-// 0.1
+createMap([
+  { id: 1, value: 1, date: "2022-02-15" },
+  { id: 2, value: 1242, date: "2023-02-15" },
+  { id: 3, value: 3342, date: "2021-02-15" },
+]);
 ```
 
-## Get integer part of number and decimal
-
-User enters a number  
-Get it's integer part and decimal
-
-```javascript
-splitNumber(num);
-
-splitNumber(2);
-// {int: 2, decimal: 0}
-
-splitNumber(2.34);
-// {int: 2, decimal: 34}
-```
-
-## Check if prime
-
-Check if given number is a prime number  
-Prime numbers are numbers that is divisible without a remainder only by itself and by 1  
-Should return boolean
-
-```javascript
-isPrime(n);
-
-isPrime(4);
-// false
-
-isPrime(5);
-// true
-```
-
-## Check if number is Armstrong Number
-
-An armstrong number is a number which equal to the sum of the cubes of its individual digits.  
-153 = 1\*1\*1 + 5\*5\*5 + 3\*3\*3
-153 = 1 + 125 + 27
-153 = 153
-
-```javascript
-isArmstrong(n);
-
-isArmstrong(4);
-// false
-
-isArmstrong(153);
-// true
-```
+![map](./map.png)
