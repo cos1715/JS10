@@ -72,25 +72,21 @@ const calcDateDiff = (startDate, endDate) => {
   const msDiff = endDateObj - startDateObj;
   const minutes = msDiff / 1000 / 60;
   const hours = minutes / 60;
-  const days = endDateObj.getDate() - startDateObj.getDate();
+  const days = Math.floor(hours / 24);
   const month = monthDiff(startDateObj, endDateObj);
   const years = endDateObj.getFullYear() - startDateObj.getFullYear();
 
-  if (minutes && hours === 0) {
+  if (minutes <= 60 && hours === 0) {
     str = `${minutes} minutes`;
-  }
-  if (hours <= 24) {
+  } else if (hours < 24) {
     const wholeHours = Math.floor(hours);
     const restMinutes = minutes - wholeHours * 60;
     str = `${wholeHours} hours ${restMinutes} minutes`;
-  }
-  if (days > 0 && month <= 0) {
+  } else if (days > 0 && month <= 0) {
     str = `${days} days`;
-  }
-  if (month > 0 && years <= 0) {
+  } else if (month > 0 && years <= 0) {
     str = `${month} months`;
-  }
-  if (month > 12) {
+  } else {
     str = `${years} years`;
   }
 
