@@ -122,3 +122,30 @@ const cacheCalcDateDiff = (startDate, endDate) => {
     cache.set(key, calcDateDiff(startDate, endDate));
   }
 };
+const anagrams = [
+  "actor",
+  "carot",
+  "listen",
+  "enlist",
+  "debit",
+  "bided",
+  "tear",
+  "rate",
+  "night",
+  "thing",
+  "lives",
+  "veils",
+  "stressed",
+  "desserts",
+  "dormitory",
+  "dirty room",
+  "rescue",
+  "secure",
+  "a gentleman",
+  "elegant man",
+  "listen",
+  "heart",
+  "angel",
+  "leader",
+  "silent",
+];

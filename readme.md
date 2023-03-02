@@ -3,99 +3,140 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Get days in year
+## Unique values
 
-Return total days count
+Check if word in anagrams arr is anagram  
+If you found anagram store this word in set or map  
+Values in set or map should not repeat anagram of this word  
+Also should not be present in set or map  
+Try to optimize script by using check has
+
+Example: "actor" and "carot" are anagrams so store only "actor"
 
 ```javascript
-getDaysInYear(year);
+const anagrams = [
+  "actor",
+  "carot",
+  "listen",
+  "enlist",
+  "debit",
+  "bided",
+  "tear",
+  "rate",
+  "night",
+  "thing",
+  "lives",
+  "veils",
+  "stressed",
+  "desserts",
+  "dormitory",
+  "dirty room",
+  "rescue",
+  "secure",
+  "a gentleman",
+  "elegant man",
+  "listen",
+  "heart",
+  "angel",
+  "leader",
+  "silent",
+];
 
-getDaysInYear(2021);
-// 365
-getDaysInYear(2020);
-// 366
+const unique = (arr) => {
+  // your code
+};
+
+unique(anagrams);
+// [
+//   "actor",
+//   "listen",
+//   "debit",
+//   "tear",
+//   "night",
+//   "lives",
+//   "stressed",
+//   "dormitory",
+//   "rescue",
+//   "a gentleman",
+//   "heart",
+//   "angel",
+//   "leader",
+//   "silent",
+// ];
 ```
 
-## Get day of a year
+## Getter and setter
 
-Return day number from date
+Create an user object  
+User should have to first name last name and age
+Add userInfo getter which gets all info from obj  
+Add userInfo setter to set all user info from string or obj  
+String setter format 'Taras Samoilenko 25'
 
 ```javascript
-getDayNumber(date);
+const user = {
+  firstName: "",
+  lastName: "",
+  age: "",
+  // your getter and setter
+};
 
-getDayNumber("2023-01-12");
-// 12
+user.userInfo = "Taras Samoilenko 25";
+user.userInfo;
+// "Taras Samoilenko is 25"
 
-getDayNumber("2023-02-26");
-// 57
+user.userInfo = { firstName: "Kate", lastName: "Karp", age: 22 };
+user.userInfo;
+// "Kate Karp is 22"
 ```
 
-## Get fiscal quarters
+## Create arr method
 
-Return quarter number from date  
-I quarter: Jan - Mar  
-II quarter: Apr - Jun  
-III quarter: Jul - Sep  
-IV quarter: Oct - Dec
+Create obj with property from and to  
+Create function createArr that reads obj properties and  
+Creates new sorted arr with range from and to  
+Assign this arr as obj property
+
+Create 3 solutions
+Solution 1 without bind, call or apply  
+Solution 2 with bind
+Solution 3 with call or apply
 
 ```javascript
-getQuarters(date);
+const obj = {
+  from: 1,
+  to: 10,
+};
 
-getQuarters("2023-02-26");
-// Feb 26 is I quarter
+const createArr = () => {
+  // your code
+};
+
+obj.arr;
+// [1, 2, 3, 4, 5, 6, 7, 8, 9];
 ```
 
-## Write a function to calculate date diff
+## Constructor Function
 
-Write a function to calculate date diff  
-Return value should be a formated string  
-If diff is less then hour use minutes format
-If diff is less then day use hour and minute format  
-If diff is less then month use days format
-If diff is less then year use moth format
-Everything else can be in years format
-
-```javascript
-calcDateDiff(startDate, endDate);
-
-calcDateDiff("2023-02-26 14:00", "2023-02-26 14:20");
-// 20 minutes
-
-calcDateDiff("2023-02-26 14:00", "2023-02-26 15:30");
-// 1 hours 30 minutes
-
-calcDateDiff("2023-02-26 14:00", "2023-02-28 15:30");
-// 2 days
-
-calcDateDiff("2023-02-26 14:00", "2023-05-28 15:30");
-// 3 months
-
-calcDateDiff("2023-02-26 14:00", "2025-05-28 15:30");
-// 2 years
-```
-
-## Create a map
-
-Create map from array of objects  
-Key should be id from object  
-Please add more input data
+Create a constructor function that creates car obj  
+Obj should have properties model, color, age, speed, and gasTank, started
+Obj should have methods startEngine, drive, stop, speedUp, slowDown, addGas
+This methods should be chainable  
+startEngine method checks if car has gas (you can create another method for checking gas)  
+If gas is not empty set property started to true  
+drive method should do smth only if property started is true and gas is no 0  
+if started true increase speed to 30  
+stop method sets property started to false  
+speedUp method increases speed by arg. Max speed is 200  
+Each speedUp method decreases gas by 5. Max gas is 20
+If gas is empty stop car  
+speedUp(5) adds 5 to speed  
+slowDown works like speedUp but decreases speed. Min speed is 0  
+addGas method adds gas to car by arg  
+addGas(5) adds 5 to gas
 
 ```javascript
-createMap(arr);
-
-createMap([
-  { id: 1, value: 1, date: "2022-02-15" },
-  { id: 2, value: 1242, date: "2023-02-15" },
-  { id: 3, value: 3342, date: "2021-02-15" },
-]);
-```
-
-![map](./map.png)
-
-## Create a cache
-
-Create a cache for calcDateDiff
-
-```javascript
-cacheCalcDateDiff(startDate, endDate);
+function Car(model, color, age, speed, and gasTank, started){
+  // your code
+};
 ```
