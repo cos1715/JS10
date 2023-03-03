@@ -124,12 +124,14 @@ Obj should have methods **startEngine**, **drive**, **stop**, **speedUp**, **slo
 This methods should be chainable  
 **startEngine** method checks if car has **gas** (you can create another method for checking **gas**)  
 If **gas** is not empty set property **started** to true  
-**drive** method should do smth only if property **started** is true and **gas** is no 0  
+**drive** method should do smth only if property **started** is true and **gas** is not 0  
 if **started** true increase **speed** to 30  
-**stop** method sets property **started** to false  
+**stop** method sets property **started** to false and speed to 0  
 **speedUp** method increases **speed** by arg. Max speed is 200  
 Each **speedUp** method decreases **gas** by 5. Max gas is 20
 If **gas** is empty **stop** car  
+**gas** cannot be less then 0  
+If **started** is false **stop** car  
 speedUp(5) adds 5 to speed  
 **slowDown** works like speedUp but decreases **speed**. Min speed is 0  
 **addGas** method adds **gas** to car by arg  
