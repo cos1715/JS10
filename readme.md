@@ -21,7 +21,7 @@ const anagrams = [
   "listen",
   "enlist",
   "debit",
-  "bided",
+  "bidet",
   "tear",
   "rate",
   "night",
@@ -62,7 +62,6 @@ unique(anagrams);
 //   "heart",
 //   "angel",
 //   "leader",
-//   "silent",
 // ];
 ```
 
