@@ -136,7 +136,7 @@ speedUp(5) adds 5 to speed
 addGas(5) adds 5 to gas
 
 ```javascript
-function Car(model, color, age, speed, and gasTank, started){
+function Car(model, color, age, speed, gasTank, started) {
   // your code
-};
+}
 ```
