@@ -9,7 +9,8 @@ Check if word in anagrams arr is anagram
 If you found anagram store this word in **set** or **map**  
 Values in **set** or **map** should not repeat anagram of this word  
 Also should not be present in **set** or **map**  
-Try to optimize script by using check **has**
+Try to optimize script by using check **has**  
+Return collection **set** or **map**
 
 Example: "actor" and "carot" are anagrams so store only "actor"
 
