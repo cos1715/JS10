@@ -6,7 +6,7 @@ It will help for better testing
 ## Pythagorean theorem
 
 Calculate length of other side
-a*a + b*b = c\*c  
+a\*a + b\*b = c\*c  
 Find c
 
 ```javascript
