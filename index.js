@@ -1,3 +1,68 @@
+// ## Closure
+
+function calculate(initialValue) {
+  let currentValue = initialValue;
+
+  return {
+    add(n) {
+      return (currentValue += n);
+    },
+    subtract(n) {
+      return (currentValue -= n);
+    },
+    multiply(n) {
+      return (currentValue *= n);
+    },
+    divide(n) {
+      return (currentValue /= n);
+    },
+    reset() {
+      return (currentValue = 0);
+    },
+  };
+}
+
+// ## Decorator
+
+const obj = {
+  num: 1,
+  sum(num) {
+    return this.num + num;
+  },
+};
+
+const cachesDecorator = (func) => {
+  const map = new Map();
+  return function (num) {
+    if (!map.has(num)) {
+      const result = func.call(this, num);
+      map.set(num, result);
+    }
+    return map.get(num);
+  };
+};
+
+const sum = function (num) {
+  return this.num + num;
+};
+
+const decoratedSum = cachesDecorator(sum);
+console.log(decoratedSum.call(obj, 2));
+console.log(decoratedSum.call(obj, 2));
+
+const decoratedSum2 = cachesDecorator(obj.sum);
+console.log(decoratedSum.call(obj, 3));
+console.log(decoratedSum.call(obj, 3));
+console.log(decoratedSum.call(obj, 33));
+
+// ## Factorial recursion (optional)
+
+const factorial = (initialNumber) => {
+  return initialNumber === 2
+    ? initialNumber
+    : initialNumber * factorial(initialNumber - 1);
+};
+
 // const user = {};
 // const number1 = 2;
 // const number2 = 2;
