@@ -153,4 +153,19 @@ function myFirstRecursion(from, to) {
   return result + to;
 }
 
+function fromTo(from, to) {
+  let value = to;
+  let sum = 0;
+  while (true) {
+    if (from === value) {
+      sum += value;
+      break;
+    } else {
+      sum += value;
+      value--;
+    }
+  }
+  return sum;
+}
+
 myFirstRecursion(2, 5);
