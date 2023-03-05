@@ -34,24 +34,24 @@ const cachesDecorator = (func) => {
 };
 
 const obj = {
-  num1: 1,
-  num2: 2,
-  sum() {
-    return this.num1 + this.num2;
+  num: 1,
+  result: null,
+  sum(num) {
+    return this.num + num;
   },
 };
 
-const sum = () => {
-  return this.num1 + this.num2;
+const sum = (num) => {
+  return this.num + num;
 };
 
 const decoratedSum = cachesDecorator(sum);
-decoratedSum();
+decoratedSum(2);
 // 3
 
 const decoratedSum = cachesDecorator(obj.sum);
-decoratedSum();
-// 3
+decoratedSum(3);
+// 4
 ```
 
 ## Factorial recursion (optional)
