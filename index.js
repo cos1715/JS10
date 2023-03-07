@@ -1,171 +1,84 @@
-// ## Closure
+const animal = {
+  eats: true,
+  runs() {
+    console.log(this);
+    return "animal runs";
+  },
+  go() {
+    console.log(this);
+    return "animal goes";
+  },
+};
+const rabbit = Object.create(animal, {
+  jumps: { value: true, enumerable: true },
+  go: {
+    value: function () {
+      console.log(this);
+      return this.runs();
+    },
+  },
+});
 
-function calculate(initialValue) {
-  let currentValue = initialValue;
+// rabbit.__proto__ = animal;
 
-  return {
-    add(n) {
-      return (currentValue += n);
-    },
-    subtract(n) {
-      return (currentValue -= n);
-    },
-    multiply(n) {
-      return (currentValue *= n);
-    },
-    divide(n) {
-      return (currentValue /= n);
-    },
-    reset() {
-      return (currentValue = 0);
-    },
-  };
-}
+console.log("rabbit", rabbit.go());
 
-// ## Decorator
+const country = {
+  country: "Ukraine",
+};
 
-const obj = {
-  num: 1,
-  sum(num) {
-    return this.num + num;
+const city = {
+  city: "Kyiv",
+  __proto__: country,
+};
+
+const street = {
+  street: "Shevchenka",
+  __proto__: city,
+};
+
+const house = Object.create(flat, {
+  house: {
+    value: 1,
+    enumerable: true,
+  },
+});
+
+const flat = {
+  flat: 1,
+  __proto__: house,
+};
+
+const cityPlan = {
+  houses: [1, 2, 3, 4, 5, 6],
+
+  build(house) {
+    this.houses.push(house);
+    // this.houses = [food];
   },
 };
 
-const cachesDecorator = (func) => {
-  const map = new Map();
-  return function (num) {
-    if (!map.has(num)) {
-      const result = func.call(this, num);
-      map.set(num, result);
-    }
-    return map.get(num);
-  };
+const Kyiv = {
+  __proto__: cityPlan,
 };
 
-const sum = function (num) {
-  return this.num + num;
+const Lviv = {
+  __proto__: cityPlan,
 };
 
-const decoratedSum = cachesDecorator(sum);
-console.log(decoratedSum.call(obj, 2));
-console.log(decoratedSum.call(obj, 2));
-
-const decoratedSum2 = cachesDecorator(obj.sum);
-console.log(decoratedSum.call(obj, 3));
-console.log(decoratedSum.call(obj, 3));
-console.log(decoratedSum.call(obj, 33));
-
-// ## Factorial recursion (optional)
-
-const factorial = (initialNumber) => {
-  return initialNumber === 2
-    ? initialNumber
-    : initialNumber * factorial(initialNumber - 1);
+const mayor = {
+  name: "",
+  term: 4,
 };
 
-// const user = {};
-// const number1 = 2;
-// const number2 = 2;
-// const arr = [1, 2];
-
-// function bazz(first, last) {
-//   const arr = [];
-//   const number1 = 22;
-//   const number2 = 22;
-//   const bar = () => {
-//     const number2 = 3;
-//     return function () {
-//       debugger;
-//       const xxxx = {};
-//       return number1 + number2 + number1;
-//     };
-//   };
-
-//   const foo = bar();
-//   return foo();
-// }
-
-// bazz();
-
-let bazz = function () {
-  let counter = 0;
-
-  return function (n) {
-    // console.log(arguments);
-    counter = counter + n;
-    return counter;
-  };
-};
-
-const innerFunc = bazz();
-const innerFunc2 = bazz();
-// bazz = null;
-// console.log(innerFunc(3));
-// console.log(innerFunc(2));
-// console.log(innerFunc(5));
-// console.log(innerFunc2(50));
-
-// let multiply = function (a) {
-//   let sum = 0;
-
-//   return function (b) {
-//     // console.log(arguments);
-//     sum = a * b;
-//     return sum;
-//   };
-// };
-
-// console.log(multiply(2)(2));
-// function logThis() {
-//   console.log(this);
-// }
-
-// const obj = {
-//   a: 1,
-//   bazz() {
-//     this.a += 1;
-//     return this.a;
-//   },
-// };
-
-// function foo(func) {
-//   const someValue = "result is";
-//   return function () {
-//     const result = func.call(this);
-//     return `${someValue} ${result}`;
-//   };
-// }
-
-// // const func = obj.bazz;
-// // console.log(func());
-
-// const myDecorator = foo(obj.bazz);
-
-// console.log(myDecorator.call(obj));
-
-function myFirstRecursion(from, to) {
-  if (from === to) {
-    return to;
-  }
-  const result = myFirstRecursion(from, to - 1);
-  console.log("result", result);
-  console.log("to", to);
-  return result + to;
+function Uzhorod(name) {
+  this.name = name;
 }
 
-function fromTo(from, to) {
-  let value = to;
-  let sum = 0;
-  while (true) {
-    if (from === value) {
-      sum += value;
-      break;
-    } else {
-      sum += value;
-      value--;
-    }
-  }
-  return sum;
-}
+Uzhorod.prototype = mayor;
+Uzhorod.prototype.fireMayor = function () {
+  // update prototype
+  this.name = "";
+};
 
-myFirstRecursion(2, 5);
+const uzhorod = new Uzhorod("Taras");
