@@ -133,7 +133,7 @@ const strings = [
 
 const unique = (arr) => {
   const uniqueArr = [];
-  strings.forEach((str) => !u.includes(item) && u.push(item));
+  arr.forEach((str) => !uniqueArr.includes(str) && uniqueArr.push(str));
 
   return uniqueArr;
 };
