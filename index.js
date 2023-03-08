@@ -1,153 +1,140 @@
+// const namesList = {
+//   name: "Taras",
+//   next: {
+//     name: "Kateryna",
+//     next: {
+//       name: "Andriy",
+//       next: {
+//         name: "Julia",
+//         next: null,
+//       },
+//     },
+//   },
+// };
+
+// const printNames = (list) => {
+//   console.log(list.name);
+//   debugger;
+
+//   if (list.next === null) {
+//     return;
+//   } else {
+//     printNames(list.next);
+//   }
+// };
+
+// printNames(namesList);
+
+// const sumNumber = (n) => {
+
+// };
+
+// sumNumber(10);
+// const obj = { a: 1 };
+
+// console.log(obj);
+
 const person = {
   eats: true,
   sleeps: true,
-  learn() {
-    console.log(this);
-    return "person runs";
-  },
-  walk() {
-    console.log(this);
-    return "person goes";
-  },
 };
+
+const andrii = {
+  studies: true,
+  __proto__: person,
+};
+
 const taras = Object.create(person, {
-  studies: { value: true, enumerable: true },
-  walk: {
-    value: function () {
-      console.log(this);
-      return this.runs();
-    },
-  },
-});
-
-// person.__proto__ = taras;
-
-console.log("taras", rabbit.walk());
-
-// chain inheritance
-const country = {
-  country: "Ukraine",
-};
-
-const city = {
-  city: "Kyiv",
-  __proto__: country,
-};
-
-const street = {
-  street: "Shevchenka",
-  __proto__: city,
-};
-
-const house = Object.create(street, {
-  house: {
-    value: 1,
+  studies: {
+    value: true,
     enumerable: true,
+    // writable: false,
+    // configurable: false,
   },
 });
 
-const flat = {
-  flat: 1,
-  __proto__: house,
+// console.log(andrii);
+// console.log(taras);
+
+// const country = {
+//   country: "Ukraine",
+//   getCountry() {
+//     console.log(this);
+//     return this.country;
+//   },
+// };
+// const city = {
+//   city: "Kyiv",
+//   __proto__: country,
+// };
+// const street = Object.create(city, {
+//   street: { value: "Shevchenka", enumerable: true },
+// });
+// const house = {
+//   number: 1,
+//   __proto__: street,
+// };
+
+// console.log(house.getCountry());
+
+const objA = {
+  myMethod() {
+    return 23;
+  },
 };
 
-// how to fix this error
+const objB = {
+  myMethod() {
+    return "string";
+  },
+  __proto__: objA,
+};
+
+objB.myMethod();
+
 const cityPlan = {
-  houses: [1, 2, 3, 4, 5, 6],
-
-  build(house) {
-    this.houses.push(house);
-    // this.houses = [house];
+  houses: [1, 2, 3, 4, 5],
+  buildHouse(house) {
+    this.houses = [...this.houses, house];
   },
 };
 
-const Kyiv = {
-  __proto__: cityPlan,
-};
+const kyiv = Object.create(cityPlan);
+const lviv = Object.create(cityPlan);
+const khariv = Object.create(cityPlan);
 
-const Lviv = {
-  __proto__: cityPlan,
-};
+khariv.buildHouse(6);
 
-// function constructor
+console.log(kyiv);
 
-function Mayor(name) {
-  this.name = name;
-  this.term = 4;
+function Shape(color) {
+  this.color = color;
 }
 
-// Ми використовуємо Mayor.call(this, name) для того, щоб успадкувати властивості name, term від батьківського конструктора.
-// Таким чином, ми можемо використовувати ці властивості в нашому конструкторі Uzhorod, не дублюючи код
-function Uzhorod(name) {
-  Mayor.call(this, name);
+function Square(color, sideA, sideB) {
+  Shape.call(this, color);
+  this.sideA = sideA;
+  this.sideB = sideB;
 }
 
-Uzhorod.prototype = Mayor.prototype; // we don't need func as prototype we need obj
-Uzhorod.prototype.constructor = Uzhorod; // is needed because when we set prototype we change constructor
-
-// without upper line
-// uzhorod.constructor === Uzhorod
-// false
-
-// This line adds function to all as prototype
-// not like a property
-
-Uzhorod.prototype.fireMayor = function () {
-  // update prototype
-  this.name = "";
+Square.prototype = Shape.prototype;
+Square.prototype.constructor = Square;
+Square.prototype.getArea = function () {
+  return this.sideA * this.sideB;
 };
 
-const uzhorod = new Uzhorod("Taras");
-
-const list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null,
-      },
-    },
-  },
-};
-
-function printList(list) {
-  alert(list.value); // виведіть поточний елемент
-
-  if (list.next) {
-    printList(list.next); // зробіть те ж саме для решти списку
-  }
+function Circle(color, radius) {
+  Shape.call(this, color);
+  this.radius = radius;
 }
 
-const company = {
-  sales: [
-    { name: "John", salary: 1000 },
-    { name: "Alice", salary: 1600 },
-  ],
-  development: {
-    sites: [
-      { name: "Peter", salary: 2000 },
-      { name: "Alex", salary: 1800 },
-    ],
-    internals: [{ name: "Jack", salary: 1300 }],
-  },
+Circle.prototype = Shape.prototype;
+Circle.prototype.constructor = Circle;
+Circle.prototype.getArea = function () {
+  return Math.PI * this.radius ** 2;
 };
-const read = (obj) => {
-  const keys = Object.keys(obj);
-  const sum = keys.reduce((acc, key) => {
-    if (Array.isArray(obj[key])) {
-      return (
-        acc +
-        obj[key].reduce((innerAcc, item) => {
-          return innerAcc + item.salary;
-        }, 0)
-      );
-    } else {
-      return acc + read(obj[key]);
-    }
-  }, 0);
 
-  return sum;
-};
+const rectangular = new Square("red", 4, 4);
+const circle = new Circle("blue", 4, 4);
+console.log(rectangular);
+console.log(circle);

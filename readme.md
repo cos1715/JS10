@@ -30,7 +30,7 @@ faculty.groups;
 ## Prototype constructor
 
 Create a basic Shape that has color property and a getArea() method.  
-Create two subclasses, Rectangle and Circle, that inherit the properties and methods of the Shape.  
+Create two sub objects, Rectangle and Circle, that inherit the properties and methods of the Shape.  
 The Rectangle class must have width and height properties, and the getArea() method must return the area of the rectangle.  
 The Circle class must have a radius property, and the getArea() method must return the area of the circle.
 
@@ -63,7 +63,7 @@ fibonacci(7);
 // 13
 ```
 
-## Fibonacci recursion with cache
+## Fibonacci recursion with cache (Optional)
 
 Create a decorator for fibonacci function and cache result  
 Try with big numbers (100, 200)
