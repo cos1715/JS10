@@ -3,66 +3,76 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Closure
+## Prototype inheritance
 
-Create a calculate() function that takes an initial number as an argument  
-and returns methods add(), subtract(), multiply(), divide() and reset()  
-each of which takes a number as an argument and returns  
-the result of the corresponding arithmetic operation on numbers
+Create a prototype chain
+Inherit from university obj with universityName and dean properties  
+Create faculty obj with facultyName and groups arr properties and method enlistStudent into groups  
+Group can contain only 12 students
 
 ```javascript
-const calculate = (initialNumber) => {
+const university = {
   // your code
 };
 
-const calculator = calculate(5);
-calculator.add(5);
-// 10
+const faculty = {
+  // your code
+};
+
+faculty.universityName;
+// Polytechnic
+
+faculty.enlistStudent("Taras");
+faculty.groups;
+// [['Taras']]
 ```
 
-## Decorator
+## Prototype constructor
 
-Create a decorator that caches function result  
-decorator receives a function as param.  
-If result in cache return value from cache  
-Test this solution with different types of functions  
-Code below is just an example you can modify it for your solution
+Create a basic Shape that has color property and a getArea() method.  
+Create two subclasses, Rectangle and Circle, that inherit the properties and methods of the Shape.  
+The Rectangle class must have width and height properties, and the getArea() method must return the area of the rectangle.  
+The Circle class must have a radius property, and the getArea() method must return the area of the circle.
 
 ```javascript
-const cachesDecorator = (func) => {
+function Shape(color) {
   // your code
-};
+}
 
-const obj = {
-  num: 1,
-  result: null,
-  sum(num) {
-    return this.num + num;
-  },
-};
+function Rectangle(color, width, height) {
+  // your code
+}
 
-const sum = (num) => {
-  return this.num + num;
-};
-
-const decoratedSum = cachesDecorator(sum);
-decoratedSum(2);
-// 3
-
-const decoratedSum = cachesDecorator(obj.sum);
-decoratedSum(3);
-// 4
+function Circle(color, radius) {
+  // your code
+}
 ```
 
-## Factorial recursion (optional)
+## Fibonacci recursion
 
-Count factorial by using recursion
+Create a function that prints last number from sequence  
+Start from 1  
+Try with big numbers (100, 200)
 
 ```javascript
-const factorial = (initialNumber) => {
+const fibonacci = (n) => {
   // your code
 };
 
-factorial(5);
-// 120
+fibonacci(7);
+// 13
+```
+
+## Fibonacci recursion with cache
+
+Create a decorator for fibonacci function and cache result  
+Try with big numbers (100, 200)
+
+```javascript
+const cacheDecorator = (func) => {
+  // your code
+};
+
+decoratedSum(7);
+// 13
 ```
