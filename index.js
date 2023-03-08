@@ -5,19 +5,24 @@ function calculate(initialValue) {
 
   return {
     add(n) {
-      return (currentValue += n);
+      currentValue += n;
+      return currentValue;
     },
     subtract(n) {
-      return (currentValue -= n);
+      currentValue -= n;
+      return currentValue;
     },
     multiply(n) {
-      return (currentValue *= n);
+      currentValue *= n;
+      return currentValue;
     },
     divide(n) {
-      return (currentValue /= n);
+      currentValue /= n;
+      return currentValue;
     },
     reset() {
-      return (currentValue = 0);
+      currentValue = 0;
+      return currentValue;
     },
   };
 }
