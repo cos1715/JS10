@@ -1,140 +1,100 @@
-// const namesList = {
-//   name: "Taras",
-//   next: {
-//     name: "Kateryna",
-//     next: {
-//       name: "Andriy",
-//       next: {
-//         name: "Julia",
-//         next: null,
-//       },
-//     },
-//   },
-// };
+// ## Prototype inheritance
 
-// const printNames = (list) => {
-//   console.log(list.name);
-//   debugger;
-
-//   if (list.next === null) {
-//     return;
-//   } else {
-//     printNames(list.next);
-//   }
-// };
-
-// printNames(namesList);
-
-// const sumNumber = (n) => {
-
-// };
-
-// sumNumber(10);
-// const obj = { a: 1 };
-
-// console.log(obj);
-
-const person = {
-  eats: true,
-  sleeps: true,
+const university = {
+  universityName: "My Own university",
+  dean: "Bohdan",
 };
-
-const andrii = {
-  studies: true,
-  __proto__: person,
-};
-
-const taras = Object.create(person, {
-  studies: {
-    value: true,
+const faculty = Object.create(university, {
+  facultyName: {
+    value: "cs",
     enumerable: true,
-    // writable: false,
-    // configurable: false,
+  },
+  groups: {
+    value: [],
+    enumerable: true,
+  },
+  enlistStudent: {
+    value: function (studentName) {
+      const lastGroup = this.groups[this.groups.length - 1] || [];
+      if (lastGroup.length !== 12) {
+        lastGroup.push(studentName);
+        if (!this.groups.length) {
+          this.groups.push(lastGroup);
+        }
+      } else {
+        this.groups.push([studentName]);
+      }
+    },
   },
 });
 
-// console.log(andrii);
-// console.log(taras);
-
-// const country = {
-//   country: "Ukraine",
-//   getCountry() {
-//     console.log(this);
-//     return this.country;
-//   },
-// };
-// const city = {
-//   city: "Kyiv",
-//   __proto__: country,
-// };
-// const street = Object.create(city, {
-//   street: { value: "Shevchenka", enumerable: true },
-// });
-// const house = {
-//   number: 1,
-//   __proto__: street,
-// };
-
-// console.log(house.getCountry());
-
-const objA = {
-  myMethod() {
-    return 23;
-  },
-};
-
-const objB = {
-  myMethod() {
-    return "string";
-  },
-  __proto__: objA,
-};
-
-objB.myMethod();
-
-const cityPlan = {
-  houses: [1, 2, 3, 4, 5],
-  buildHouse(house) {
-    this.houses = [...this.houses, house];
-  },
-};
-
-const kyiv = Object.create(cityPlan);
-const lviv = Object.create(cityPlan);
-const khariv = Object.create(cityPlan);
-
-khariv.buildHouse(6);
-
-console.log(kyiv);
-
+// ## Prototype constructor
 function Shape(color) {
   this.color = color;
 }
-
-function Square(color, sideA, sideB) {
-  Shape.call(this, color);
-  this.sideA = sideA;
-  this.sideB = sideB;
-}
-
-Square.prototype = Shape.prototype;
-Square.prototype.constructor = Square;
-Square.prototype.getArea = function () {
-  return this.sideA * this.sideB;
+Shape.prototype.getColor = function () {
+  return this.color;
 };
 
+function Rectangle(color, width, height) {
+  Shape.call(this, color);
+  this.width = width;
+  this.height = height;
+  this.area;
+}
 function Circle(color, radius) {
   Shape.call(this, color);
   this.radius = radius;
+  this.area;
 }
-
-Circle.prototype = Shape.prototype;
-Circle.prototype.constructor = Circle;
-Circle.prototype.getArea = function () {
-  return Math.PI * this.radius ** 2;
+// Added this to get values from Shape.prototype
+// Object.create is used to separate prototypes
+// Without Object.create we will have one prototype for everything
+// And when we add method getArea to Circle we override method for Rectangle
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+Rectangle.prototype.getArea = function () {
+  return this.width * this.height;
 };
 
-const rectangular = new Square("red", 4, 4);
-const circle = new Circle("blue", 4, 4);
-console.log(rectangular);
-console.log(circle);
+Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;
+Circle.prototype.getArea = function () {
+  return (Math.PI * this.radius ** 2).toFixed(2);
+};
+
+const square = new Rectangle("green", 8, 8);
+const rectangle = new Rectangle("blue", 6, 3);
+square.getArea();
+rectangle.getArea();
+const circle = new Circle("yellow", 4);
+circle.getArea();
+
+// ## Fibonacci recursion
+const fibonacci = (n) => {
+  return n <= 1 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+};
+
+// ## Fibonacci recursion with cache (Optional)
+const fibonacciWithCache = (n, cache) => {
+  if (!cache.has(n)) {
+    if (n <= 1) {
+      cache.set(n, 1);
+    } else {
+      const result =
+        fibonacciWithCache(n - 1, cache) + fibonacciWithCache(n - 2, cache);
+      cache.set(n, result);
+    }
+  }
+  return cache.get(n) || 1;
+};
+const cache = (func) => {
+  const map = new Map();
+  return (n) => {
+    if (!map.has(n)) {
+      func(n, map);
+    }
+    return map.get(n);
+  };
+};
+const fibFunc = cache(fibonacciWithCache);
