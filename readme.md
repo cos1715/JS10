@@ -66,13 +66,18 @@ fibonacci(7);
 ## Fibonacci recursion with cache (Optional)
 
 Create a decorator for fibonacci function and cache result  
+Please create new fibonacci func that uses cache from decorator and stores every result  
 Try with big numbers (100, 200)
 
 ```javascript
+const fibonacci = (n, cache) => {
+  // your code
+};
+
 const cacheDecorator = (func) => {
   // your code
 };
 
-decoratedSum(7);
+decoratedFib(7);
 // 13
 ```
