@@ -1,100 +1,162 @@
-// ## Prototype inheritance
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   name = 0;
+//   getName = () => {
+//     return this.name;
+//   };
+//   getAge() {
+//     return this.age;
+//   }
+//   get info() {
+//     return `${this.name} is ${this.age}`;
+//   }
+//   set info({ name, ownerName }) {
+//     this.name = name;
+//     this.age = age;
+//   }
+// }
 
-const university = {
-  universityName: "My Own university",
-  dean: "Bohdan",
-};
-const faculty = Object.create(university, {
-  facultyName: {
-    value: "cs",
-    enumerable: true,
-  },
-  groups: {
-    value: [],
-    enumerable: true,
-  },
-  enlistStudent: {
-    value: function (studentName) {
-      const lastGroup = this.groups[this.groups.length - 1] || [];
-      if (lastGroup.length !== 12) {
-        lastGroup.push(studentName);
-        if (!this.groups.length) {
-          this.groups.push(lastGroup);
-        }
-      } else {
-        this.groups.push([studentName]);
-      }
-    },
-  },
-});
+// const obj = {
+//   method() {
+//     return this;
+//   },
+// };
 
-// ## Prototype constructor
-function Shape(color) {
-  this.color = color;
-}
-Shape.prototype.getColor = function () {
-  return this.color;
-};
+// class Pet {
+//   constructor(name, ownerName) {
+//     this.name = name;
+//     this.ownerName = ownerName;
+//   }
+//   static type = "House Pet";
+//   static getTypeArrow = () => {
+//     return this.type;
+//   };
+//   static getType() {
+//     return this.type;
+//   }
+//   getPetName() {
+//     debugger;
+//     return this.name;
+//   }
+//   getOwnerName = () => {
+//     debugger;
+//     return this.ownerName;
+//   };
+//   get petInfo() {
+//     return `Pet - ${this.name}, Owner - ${this.ownerName}`;
+//   }
+//   set petInfo({ name, ownerName }) {
+//     this.name = name;
+//     this.ownerName = ownerName;
+//   }
+// }
 
-function Rectangle(color, width, height) {
-  Shape.call(this, color);
-  this.width = width;
-  this.height = height;
-  this.area;
-}
-function Circle(color, radius) {
-  Shape.call(this, color);
-  this.radius = radius;
-  this.area;
-}
-// Added this to get values from Shape.prototype
-// Object.create is used to separate prototypes
-// Without Object.create we will have one prototype for everything
-// And when we add method getArea to Circle we override method for Rectangle
-Rectangle.prototype = Object.create(Shape.prototype);
-Rectangle.prototype.constructor = Rectangle;
-Rectangle.prototype.getArea = function () {
-  return this.width * this.height;
-};
+// class Dog extends Pet {
+//   constructor(haveVaccine, name, ownerName) {
+//     super(name, ownerName);
+//     this.haveVaccine = haveVaccine;
+//     // this.healthy = true;
+//   }
+//   healthy = true;
+//   bark = (isBarking) => {
+//     this.bark = isBarking;
+//     this.healthy = false;
+//   };
+// }
 
-Circle.prototype = Object.create(Shape.prototype);
-Circle.prototype.constructor = Circle;
-Circle.prototype.getArea = function () {
-  return (Math.PI * this.radius ** 2).toFixed(2);
-};
+// // create Pet class
+// // initialize with pet name and ownerName
+// // add 2 methods getPetName and getOwnerName
+// // add getter and setter petInfo for name and ownerName
 
-const square = new Rectangle("green", 8, 8);
-const rectangle = new Rectangle("blue", 6, 3);
-square.getArea();
-rectangle.getArea();
-const circle = new Circle("yellow", 4);
-circle.getArea();
+// const pet = new Pet("Peter", "Taras");
+// const dog = new Dog(true, "Peter", "Taras");
+// // const user = new User("Taras");
+// // user.getAge();
+// // user.getName();
 
-// ## Fibonacci recursion
-const fibonacci = (n) => {
-  return n <= 1 ? n : fibonacci(n - 1) + fibonacci(n - 2);
-};
+// const decorator = (func) => {
+//   return () => {
+//     func();
+//   };
+// };
 
-// ## Fibonacci recursion with cache (Optional)
-const fibonacciWithCache = (n, cache) => {
-  if (!cache.has(n)) {
-    if (n <= 1) {
-      cache.set(n, 1);
-    } else {
-      const result =
-        fibonacciWithCache(n - 1, cache) + fibonacciWithCache(n - 2, cache);
-      cache.set(n, result);
-    }
+// const decoratedName = decorator(dog.getPetName);
+// // decoratedName();
+// const decoratedAge = decorator(dog.getOwnerName);
+// decoratedAge();
+
+// function UserConstructor(name) {
+//   this.name = name;
+//   this.age = 0;
+// }
+
+// UserConstructor.prototype.getAge = function () {
+//   return this.age;
+// };
+// const userFunc = new UserConstructor("Taras");
+
+class Shape {
+  constructor(color) {
+    this._color = color;
   }
-  return cache.get(n) || 1;
-};
-const cache = (func) => {
-  const map = new Map();
-  return (n) => {
-    if (!map.has(n)) {
-      func(n, map);
-    }
-    return map.get(n);
+  #private = true;
+  #privateMethod = () => {
+    return this._color;
+  };
+  checkPrivate = () => {
+    const color = this.#privateMethod();
+    return `${color} private field ${this.#private}`;
+  };
+  get color() {
+    return this._color;
+  }
+  set color(value) {
+    this._color = value;
+  }
+  setColor(color) {
+    this._color = color;
+  }
+  getColor() {
+    return this.color;
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(color, width, height) {
+    super(color);
+    this.width = width;
+    this.height = height;
+  }
+  getArea = () => {
+    return this.height * this.width;
+  };
+  getColor = () => {
+    // const color = super.getColor();
+    const area = this.getArea();
+    return `Rectangle has ${this.color} color is ${area}`;
+  };
+}
+
+class Circle extends Shape {
+  constructor(color, radius) {
+    super(color);
+    this.radius = radius;
+  }
+  getArea = () => {
+    return Math.PI * this.radius ** 2;
+  };
+}
+
+const square = new Rectangle("blue", 4, 4);
+const circle = new Circle("red", 4);
+const decorator = (func) => {
+  return () => {
+    func();
   };
 };
-const fibFunc = cache(fibonacciWithCache);
+
+const decoratedColor = decorator(square.getColor);
+decoratedColor();
