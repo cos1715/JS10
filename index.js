@@ -98,65 +98,146 @@
 // };
 // const userFunc = new UserConstructor("Taras");
 
-class Shape {
-  constructor(color) {
-    this._color = color;
-  }
-  #private = true;
-  #privateMethod = () => {
-    return this._color;
-  };
-  checkPrivate = () => {
-    const color = this.#privateMethod();
-    return `${color} private field ${this.#private}`;
-  };
-  get color() {
-    return this._color;
-  }
-  set color(value) {
-    this._color = value;
-  }
-  setColor(color) {
-    this._color = color;
-  }
-  getColor() {
-    return this.color;
-  }
+// class Shape {
+//   constructor(color) {
+//     this._color = color;
+//   }
+//   #private = true;
+//   #privateMethod = () => {
+//     return this._color;
+//   };
+//   checkPrivate = () => {
+//     const color = this.#privateMethod();
+//     return `${color} private field ${this.#private}`;
+//   };
+//   get color() {
+//     return this._color;
+//   }
+//   set color(value) {
+//     this._color = value;
+//   }
+//   setColor(color) {
+//     this._color = color;
+//   }
+//   getColor() {
+//     return this.color;
+//   }
+// }
+
+// class Rectangle extends Shape {
+//   constructor(color, width, height) {
+//     super(color);
+//     this.width = width;
+//     this.height = height;
+//   }
+//   getArea = () => {
+//     return this.height * this.width;
+//   };
+//   getColor = () => {
+//     // const color = super.getColor();
+//     const area = this.getArea();
+//     return `Rectangle has ${this.color} color is ${area}`;
+//   };
+// }
+
+// class Circle extends Shape {
+//   constructor(color, radius) {
+//     super(color);
+//     this.radius = radius;
+//   }
+//   getArea = () => {
+//     return Math.PI * this.radius ** 2;
+//   };
+// }
+
+// const square = new Rectangle("blue", 4, 4);
+// const circle = new Circle("red", 4);
+// const decorator = (func) => {
+//   return () => {
+//     func();
+//   };
+// };
+
+// const decoratedColor = decorator(square.getColor);
+// decoratedColor();
+
+function addGas(gas) {
+  const gasVolume = this.gasTank + gas;
+  this.gasTank = gasVolume > this.maxGas ? this.maxGas : gasVolume;
+
+  return this;
 }
 
-class Rectangle extends Shape {
-  constructor(color, width, height) {
-    super(color);
-    this.width = width;
-    this.height = height;
+class Car {
+  constructor(model, color, age, speed, gasTank, started) {
+    this.model = model;
+    this.color = color;
+    this.age = age;
+    this.#speed = speed;
+    this.#gasTank = gasTank;
+    this.#started = started;
   }
-  getArea = () => {
-    return this.height * this.width;
+  #speed;
+  #gasTank;
+  #started;
+  #maxSpeed = 200;
+  #maxGas = 20;
+  #checkIsEmptyGasTask = () => {
+    return this.gasTank === 0;
   };
-  getColor = () => {
-    // const color = super.getColor();
-    const area = this.getArea();
-    return `Rectangle has ${this.color} color is ${area}`;
+  startEngine = () => {
+    this.#started = !this.#checkIsEmptyGasTask();
+
+    return this;
+  };
+  drive() {
+    const isEmpty = this.#checkIsEmptyGasTask();
+    const isStarted = this.#started;
+    if (!isEmpty && isStarted) {
+      this.#speed = 30;
+    }
+
+    return this;
+  }
+  stop = () => {
+    this.#started = false;
+    this.#speed = 0;
+
+    return this;
+  };
+  speedUp = (newSpeed) => {
+    const isEmpty = this.#checkIsEmptyGasTask();
+    const isStarted = this.#started;
+
+    if (!isEmpty && isStarted) {
+      const gasVolume = this.gasTank - 5;
+      this.#speed =
+        this.#speed + newSpeed > this.#maxSpeed ? this.#maxSpeed : newSpeed;
+      this.#gasTank = gasVolume < 0 ? 0 : gasVolume;
+    } else {
+      this.stop();
+    }
+
+    return this;
+  };
+  slowDown = (newSpeed) => {
+    this.speedUp(newSpeed);
+
+    return this;
+  };
+  addGas = (gas) => {
+    const gasVolume = this.#gasTank + gas;
+    this.#gasTank = gasVolume > this.#maxGas ? this.#maxGas : gasVolume;
+
+    return this;
   };
 }
 
-class Circle extends Shape {
-  constructor(color, radius) {
-    super(color);
-    this.radius = radius;
+const car = new Car("Tesla", "red", 3, 0, 10, false);
+
+class Bus extends Car {
+  constructor(model, color, age, speed, gasTank, started, maxPassenger) {
+    super(model, color, age, speed, gasTank, started);
+    this.maxPassenger = maxPassenger;
   }
-  getArea = () => {
-    return Math.PI * this.radius ** 2;
-  };
 }
-
-const square = new Rectangle("blue", 4, 4);
-const circle = new Circle("red", 4);
-const decorator = (func) => {
-  return () => {
-    func();
-  };
-};
-
-const decoratedColor = decorator(square.getColor);
-decoratedColor();

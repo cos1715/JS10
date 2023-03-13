@@ -3,81 +3,47 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-## Prototype inheritance
+## OOP
 
-Create a prototype chain
-Inherit from university obj with universityName and dean properties  
-Create faculty obj with facultyName and groups arr properties and method enlistStudent into groups  
-Group can contain only 12 students
+Create class **Vehicle**  
+Initialize class with properties **power**, **gasTank** and **mass** in tones
+Calculate max speed by formula **0.84 \* power / mass**  
+Create method **getMaxSpeed** that returns **maxSpeed**  
+Calculate gas usage per km by formula **maxSpeed / power**  
+Create method **getGasUsage** that returns **gasUsage**
+Create method **startEngine** that sets property **started** to true
+Create method **stopEngine** that sets property **started** to false
+Create method **drive**. This method receives 2 arguments **speed** and **distance**  
+You cannot **drive** if **started** is false  
+You cannot set **speed** more then **maxSpeed** and less then 0  
+Update **gas** property corresponding to **gasUsage**
+Create method **addGas** adds **gas** to car by arg  
+Argument must be bigger then zero  
+You cannot pour more **gas** then **gasTank**  
+Create method **printInfo** that prints in console all available information
+
+Create class **Car**  
+**Car** should inherit from **Vehicle**  
+Initialize **Car** with additional properties **type** and **maxPassengerCount**  
+Examples of **type** SEDAN, MINIVAN, SPORTS CAR...  
+Update method **printInfo** that prints in console all available information
+
+Create class **Bus**  
+**Bus** should inherit from **Car**  
+Create method **updatePassengers** that receives argument **passengers** and updates **passengerCount** to that number  
+**passengerCount** cannot be more then **maxPassengerCount** and less then 0  
+Update method **printInfo** that prints in console all available information
 
 ```javascript
-const university = {
-  // your code
-};
-
-const faculty = {
-  // your code
-};
-
-faculty.universityName;
-// Polytechnic
-
-faculty.enlistStudent("Taras");
-faculty.groups;
-// [['Taras']]
-```
-
-## Prototype constructor
-
-Create a basic Shape that has color property and a getArea() method.  
-Create two sub objects, Rectangle and Circle, that inherit the properties and methods of the Shape.  
-The Rectangle class must have width and height properties, and the getArea() method must return the area of the rectangle.  
-The Circle class must have a radius property, and the getArea() method must return the area of the circle.
-
-```javascript
-function Shape(color) {
+class Vehicle {
   // your code
 }
 
-function Rectangle(color, width, height) {
+class Car {
   // your code
 }
 
-function Circle(color, radius) {
+class Bus {
   // your code
 }
-```
-
-## Fibonacci recursion
-
-Create a function that prints last number from sequence  
-Start from 1  
-Try with big numbers (100, 200)
-
-```javascript
-const fibonacci = (n) => {
-  // your code
-};
-
-fibonacci(7);
-// 13
-```
-
-## Fibonacci recursion with cache (Optional)
-
-Create a decorator for fibonacci function and cache result  
-Please create new fibonacci func that uses cache from decorator and stores every result  
-Try with big numbers (100, 200)
-
-```javascript
-const fibonacci = (n, cache) => {
-  // your code
-};
-
-const cacheDecorator = (func) => {
-  // your code
-};
-
-decoratedFib(7);
-// 13
 ```
