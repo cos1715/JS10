@@ -24,7 +24,8 @@ and was successfully deleted.
 else **deleteUser** returns a rejected promise with value custom error
 
 Please write a function that works with promise chains and async/await function  
-console.log the result
+console.log the result  
+Create special function that creates users from promise array
 
 ```javascript
 class MockServer {
