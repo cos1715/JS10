@@ -3,48 +3,39 @@
 Feel free to modify test data or add new data
 It will help for better testing
 
-## OOP
+## Server Mock
 
-Create class **Vehicle**  
-Initialize class with properties **power**, **gasTank** and **mass** in tones
-Calculate max speed by formula **0.84 \* power / mass**  
-Create method **getMaxSpeed** that returns **maxSpeed**  
-Calculate gas usage per km by formula **Math.round(maxSpeed / power \* 100)**  
-Create method **getGasUsage** that returns **gasUsage**
-Create method **startEngine** that sets property **started** to true
-Create method **stopEngine** that sets property **started** to false
-Create method **drive**. This method receives 2 arguments **speed** and **distance** in km  
-You cannot **drive** if **started** is false  
-You cannot set **speed** more then **maxSpeed** and less then 0  
-Update **gas** property corresponding to **gasUsage**
-Formula to calculate **gas** level is **distance** \* **gasUsage** / 100  
-Create method **addGas** adds **gas** to car by arg  
-Argument must be bigger then zero  
-You cannot pour more **gas** then **gasTank**  
-Create method **printInfo** that prints in console all available information
+Create class **MockServer**  
+Create private property **users**  
+**users** is an array  
+All class methods should have 1 sec of delay. Similar to what we wrote during lesson  
+Create method **getAllUsers**. This method returns a fulfilled promise with all users  
+Create method **getUser**. This method returns a fulfilled promise with user if user exists in **users**  
+and rejected promise with custom error if no user found  
+Create method **addUser**. This method receives user object as arg.  
+**addUser** returns a fulfilled promise with value **true** if user arg has properties **id**, **name**, **age**  
+else **addUser** returns a rejected promise with value custom error  
+Create method **updateUser**. This method receives id as first arg user object as second arg.  
+**updateUser** returns a fulfilled promise with updated users if user exists in **users**  
+else **updateUser** returns a rejected promise with value custom error  
+Create method **deleteUser**. This method receives id as arg  
+**deleteUser** returns a fulfilled promise with value **true** if user existed in **users**  
+and was successfully deleted.  
+else **deleteUser** returns a rejected promise with value custom error
 
-Create class **Car**  
-**Car** should inherit from **Vehicle**  
-Initialize **Car** with additional properties **type** and **maxPassengerCount**  
-Examples of **type** SEDAN, MINIVAN, SPORTS CAR...  
-Update method **printInfo** that prints in console all available information
-
-Create class **Bus**  
-**Bus** should inherit from **Car**
-Create method **updatePassengers** that receives argument **passengers** and updates **passengerCount** to that number  
-**passengerCount** cannot be more then **maxPassengerCount** and less then 0  
-Update method **printInfo** that prints in console all available information
+Please write a function that works with promise chains and async/await function  
+console.log the result
 
 ```javascript
-class Vehicle {
+class MockServer {
+  #users = [];
   // your code
 }
 
-class Car {
+const readAllUsers = async () => {
   // your code
-}
-
-class Bus {
+};
+const readUserById = (id) => {
   // your code
-}
+};
 ```
