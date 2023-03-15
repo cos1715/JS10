@@ -11,7 +11,8 @@ Create private property **users**
 Methods can be static  
 All class methods should have 1 sec of delay. Similar to what we wrote during lesson  
 Create method **getAllUsers**. This method returns a fulfilled promise with all users  
-Create method **getUser**. This method returns a fulfilled promise with user if user exists in **users**  
+Create method **getUser**. This method receives id as arg.  
+This method returns a fulfilled promise with user if user exists in **users**  
 and rejected promise with custom error if no user found  
 Create method **addUser**. This method receives user object as arg.  
 **addUser** returns a fulfilled promise with value **true** if user arg has properties **id**, **name**, **age**  
