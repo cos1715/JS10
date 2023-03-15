@@ -8,6 +8,7 @@ It will help for better testing
 Create class **MockServer**  
 Create private property **users**  
 **users** is an array  
+All methods can be static  
 All class methods should have 1 sec of delay. Similar to what we wrote during lesson  
 Create method **getAllUsers**. This method returns a fulfilled promise with all users  
 Create method **getUser**. This method returns a fulfilled promise with user if user exists in **users**  
