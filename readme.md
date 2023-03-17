@@ -25,8 +25,7 @@ Create method **deleteUser** which deletes user in **users**. This method receiv
 and was successfully deleted.  
 else **deleteUser** returns a rejected promise with value custom error
 
-Please write a function that works with promise chains and async/await function  
-console.log the result  
+Please write a function that works with promise chains and another function that works with async/await and console.log the result  
 Create special function that creates users from promise array
 
 ```javascript
