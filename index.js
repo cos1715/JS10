@@ -84,3 +84,21 @@ const promiseFunc = (func, ...rest) => {
       console.log("err", err);
     });
 };
+
+const createMultipleUsers = async (arr) => {
+  try {
+    const result = await Promise.all(
+      arr.map((item) => MockServer.addUser(item))
+    );
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const createMultipleUsers2 = async (arr) => {
+  const result = await Promise.allSettled(
+    arr.map((item) => MockServer.addUser(item))
+  );
+  console.log(result);
+};
