@@ -1,214 +1,192 @@
-const start = Date.now();
+console.log("1");
 
-setInterval(() => {
-  const date = new Date();
-  const hours = `${date.getHours()}`.padStart(2, 0);
-  const minutes = `${date.getMinutes()}`.padStart(2, 0);
-  const seconds = `${date.getSeconds()}`.padStart(2, 0);
-  console.log(`${hours}:${minutes}:${seconds}`);
-}, 1000);
+setTimeout(() => {
+  console.log("2");
+}, 0);
 
-let timerId;
-const interval = () => {
-  const end = Date.now();
-  console.log("end-start", end - start);
-  if (end - start > 10_000) {
-    clearTimeout(timerId);
-  } else {
-    timerId = setTimeout(interval, 1000);
-  }
-};
+setTimeout(() => {
+  console.log("3");
+}, 0);
 
-setTimeout(interval, 1000);
+const promise = Promise.resolve();
 
-const print = () => {
-  console.log("hello");
-};
+for (let i = 0; i < 2; i++) {
+  promise
+    .then(() => {
+      setTimeout(() => {
+        console.log("4");
+        setTimeout(() => {
+          console.log("5");
+        }, 0);
+      }, 0);
 
-const foo = (func, ms) => {
-  setTimeout(func, ms);
-};
-
-foo(print, 1000);
-
-let i = 0;
-while (i < 3) {
-  i++;
-  let j = i;
-  setTimeout(() => {
-    console.log(j);
-  }, 200);
-}
-
-const promise = new Promise((resolve, reject) => {
-  resolve(1);
-  reject("rejected");
-});
-
-promise
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  .then((data) => {
-    console.log("then", data);
-    return data * 2;
-  })
-  // .catch((err) => {
-  //   console.log("catch", err);
-  // })
-  // .catch((err) => {
-  //   console.log("catch 2", err);
-  //   return 2;
-  // })
-  .then((data) => {
-    return new Promise((resolve, reject) => {
-      reject(2);
+      Promise.resolve().then(() => {
+        console.log("6");
+      });
+      promise.then(() => {
+        console.log("7");
+      });
+    })
+    .then(() => {
+      console.log("8");
     });
-  })
-  .then((data) => {
-    console.log("inner promise", data);
-    return data * 3;
-  })
-  .then((data) => {
-    console.log("inner promise 2", data);
-    return data * 3;
-  })
-  // .catch((err) => {
-  //   console.log("catch 3", err);
-  // })
-  // .catch((err) => {
-  //   console.log("catch 4", err);
-  // })
-  // .catch((err) => {
-  //   console.log("catch 5", err);
-  // })
-  .finally(() => {
-    console.log("finally");
-  })
-  .finally(() => {
-    console.log("finally");
-  })
-  .finally(() => {
-    console.log("finally");
-  })
-  .finally(() => {
-    console.log("finally");
-  });
-console.log(promise);
-
-const bazz = (ms) => {
-  return new Promise((resolve, reject) => {
-    const timerId = setTimeout(() => {
-      resolve();
-    }, ms);
-    if (ms > 5000) {
-      clearTimeout(timerId);
-      reject();
-    }
-  });
-};
-
-bazz(6000)
-  .then(() => {
-    console.log("in then");
-  })
-  .catch((err) => {
-    console.log("in catch");
-  });
-
-const arr = [
-  { id: 1, name: "Taras", age: 20 },
-  { id: 2, name: "Andrii", age: 15 },
-];
-
-const getData = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const user = arr.find((item) => item.id === id);
-      if (user) {
-        resolve(user);
-      } else {
-        reject(new Error("No user Found"));
-      }
-    }, 100);
-  });
-};
-
-const asyncFunc = async (id) => {
-  // debugger;
-  // try {
-  try {
-    const user = await getData(id);
-    const myError = new Error("my error");
-
-    throw "1221";
-    console.log("after error");
-  } catch (err) {
-    console.log(err);
-  } finally {
-    console.log("finally");
-  }
-  // console.log(user);
-  // } catch (err) {
-  console.log(err);
-  // }
-};
-
-asyncFunc(1).catch((err) => {
-  console.log(err);
-});
-
-const p1 = getData(11);
-const p2 = getData(22);
-
-Promise.any([p1, p2])
-  .then((data) => {
-    console.log("promise.allSettled then", data);
-  })
-  .catch((err) => {
-    console.log("promise.allSettled catch", err);
-  });
-
-getData(1)
-  .then((user) => {
-    console.log("then", user);
-  })
-  .catch((err) => {
-    console.log("catch", err);
-  });
-
-try {
-  const p1 = getData(11);
-  throw new Error("message");
-  const p2 = getData(22);
-  console.log("try");
-} catch (err) {
-  console.log("err", err);
-} finally {
-  console.log("finally");
 }
+console.log("9");
+
+// new Promise((resolve) => {
+//   resolve(1);
+// })
+//   .then(() => {
+//     console.log("4");
+//   })
+//   .then(() => {
+//     console.log("5");
+//   });
+
+// console.log("6");
+
+// const callback = () => {
+//   console.log("timeout callback");
+// };
+// setTimeout(callback, 100);
+
+// const promiseCallback = (resolve) => {
+//   console.log("Promise callback");
+//   resolve(1);
+// };
+// new Promise(promiseCallback);
+
+// const callBE = async () => {
+//   const res = await fetch("https://dummyjson.com/products/1", {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       title: "BMW Pencil",
+//     }),
+//   });
+//   console.log(res);
+//   const data = await res.json();
+//   console.log(data);
+// };
+
+// callBE();
+
+class Products {
+  products = [];
+  selectedProduct = null;
+  searchedProducts = [];
+  categories = [];
+  page = 0;
+  getAllProducts() {
+    fetch("https://dummyjson.com/products")
+      .then((res) => {
+        console.log(`${res.status} ${res.url}`);
+        return res.json();
+      })
+      .then((data) => {
+        this.products.push(...data.products);
+      });
+  }
+  getProduct(id) {
+    fetch(`https://dummyjson.com/products/${id}`)
+      .then((res) => {
+        console.log(`${res.status} ${res.url}`);
+        return res.json();
+      })
+      .then((data) => {
+        this.selectedProduct = data;
+      });
+  }
+  searchProduct(param) {
+    const url = new URL("https://dummyjson.com/products/search");
+    url.searchParams.set("q", param);
+    fetch(url)
+      .then((res) => {
+        console.log(`${res.status} ${res.url}`);
+        return res.json();
+      })
+      .then((data) => {
+        this.searchedProducts.push(...data.products);
+      });
+  }
+  async paginatedProducts(limit) {
+    const url = new URL("https://dummyjson.com/products");
+    url.searchParams.set("limit", limit);
+    url.searchParams.set("skip", this.page);
+
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(`${res.status} ${res.url}`);
+
+    this.page += limit;
+    this.searchedProducts.push(...data.products);
+  }
+  async getProductCategories() {
+    const url = new URL("https://dummyjson.com/products/categories");
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(`${res.status} ${res.url}`);
+
+    this.categories.push(...data);
+  }
+  async getProductFromCategory() {
+    const random = Math.floor(Math.random() * 19);
+    await this.getProductCategories();
+    const url = new URL(
+      `https://dummyjson.com/products/category/${this.categories[random]}`
+    );
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(`${res.status} ${res.url}`);
+
+    this.searchedProducts.push(...data.products);
+  }
+  async createProduct(body) {
+    const res = await fetch("https://dummyjson.com/products/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    console.log(`${res.status} ${res.url}`);
+
+    this.products.push(data);
+  }
+  async updateProduct(id, body) {
+    const res = await fetch(`https://dummyjson.com/products/${id}`, {
+      method: "PATCH", // or 'PUT'
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    console.log(`${res.status} ${res.url}`);
+
+    this.products.push(data);
+  }
+  async deleteProduct(id) {
+    const res = await fetch(`https://dummyjson.com/products/${id}`, {
+      method: "DELETE",
+    });
+    console.log(`${res.status} ${res.url}`);
+  }
+}
+
+const myProducts = new Products();
+
+myProducts
+  .paginatedProducts(5)
+  .then(() => myProducts.paginatedProducts(5))
+  .then(() => myProducts.paginatedProducts(5))
+  .then(() => myProducts.paginatedProducts(5));
+
+myProducts.updateProduct(1111111111, {
+  title: "My title",
+  description: "no desc",
+  price: 1,
+  discountPercentage: 12.96,
+  rating: 4.69,
+  stock: 94,
+  brand: "Apple",
+  price: 12,
+  category: "custom",
+});
