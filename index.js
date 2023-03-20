@@ -1,104 +1,109 @@
-class MockServer {
-  static ms = 1000;
-  static #users = [];
+class UserService {
   static getAllUsers = () => {
-    return new Promise((resolve) =>
-      setTimeout(() => {
-        resolve(this.#users);
-      }, this.ms)
-    );
+    fetch("https://dummyjson.com/users")
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
   static getUser = (id) => {
-    return new Promise((resolve, reject) =>
-      setTimeout(() => {
-        const user = this.#users.find((item) => item.id === id);
-        if (user) {
-          resolve(user);
-        } else {
-          reject(new Error("No user found"));
-        }
-      }, this.ms)
-    );
+    fetch(`https://dummyjson.com/users/${id}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
-  static addUser = (user) => {
-    return new Promise((resolve, reject) =>
-      setTimeout(() => {
-        if (user.id && user.name && user.age) {
-          this.#users.push(user);
-          resolve(true);
-        } else {
-          reject(new Error("Please use correct data"));
-        }
-      }, this.ms)
-    );
+  static searchUsers = (query) => {
+    fetch(`https://dummyjson.com/users/search?q=${query}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
-  static updateUser = (id, user) => {
-    return new Promise((resolve, reject) =>
-      setTimeout(() => {
-        const userFound = this.#users.find((item) => item.id === id);
-        if (userFound) {
-          const updatedUser = { ...userFound, ...user };
-          this.#users = this.#users.map((item) => {
-            return item.id === id ? updatedUser : item;
-          });
-
-          resolve(updatedUser);
-        } else {
-          reject(new Error("No user found"));
-        }
-      }, this.ms)
-    );
+  static filterUsers = async (key, value) => {
+    try {
+      const url = new URL("https://dummyjson.com/users/filter");
+      url.searchParams.set("key", key);
+      url.searchParams.set("value", value);
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      debugger;
+      console.log(err);
+    }
   };
-  static deleteUser = (id) => {
-    return new Promise((resolve, reject) =>
-      setTimeout(() => {
-        const index = this.#users.findIndex((item) => item.id === id);
-        if (index > -1) {
-          const updatedUsers = this.#users.filter((user) => user.id !== id);
-          this.#users = updatedUsers;
-          resolve(true);
-        } else {
-          reject(new Error("No user found"));
-        }
-      }, this.ms)
-    );
+  static paginateUsers = async (limit, skip) => {
+    try {
+      const url = new URL("https://dummyjson.com/users");
+      url.searchParams.set("limit", limit);
+      url.searchParams.set("skip", skip);
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  static getUserCart = async (id) => {
+    try {
+      const res = await fetch(`https://dummyjson.com/users/${id}/carts`);
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  static getUserPosts = async (id) => {
+    try {
+      const res = await fetch(`https://dummyjson.com/users/${id}/posts`);
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  static getUserTodos = async (id) => {
+    try {
+      const res = await fetch(`https://dummyjson.com/users/${id}/todos`);
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  static addUser = async (body) => {
+    try {
+      const res = await fetch(`https://dummyjson.com/users/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  static updateUser = async (id, body) => {
+    try {
+      const res = await fetch(`https://dummyjson.com/users/${id}`, {
+        method: "PUT" /* or PATCH */,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  static deleteUser = async (id) => {
+    try {
+      const res = await fetch(`https://dummyjson.com/users/${id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 }
-
-const asyncFunc = async (func, ...rest) => {
-  try {
-    console.log(...rest);
-    const result = await func(...rest);
-    console.log("result", result);
-  } catch (err) {
-    console.log("err", err);
-  }
-};
-
-const promiseFunc = (func, ...rest) => {
-  func(...rest)
-    .then((result) => {
-      console.log("result", result);
-    })
-    .catch((err) => {
-      console.log("err", err);
-    });
-};
-
-const createMultipleUsers = async (arr) => {
-  try {
-    const result = await Promise.all(
-      arr.map((item) => MockServer.addUser(item))
-    );
-    console.log(result);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const createMultipleUsers2 = async (arr) => {
-  const result = await Promise.allSettled(
-    arr.map((item) => MockServer.addUser(item))
-  );
-  console.log(result);
-};
