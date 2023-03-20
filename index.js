@@ -1,38 +1,38 @@
 class UserService {
+  static #baseUrl = "https://dummyjson.com/users";
   static getAllUsers = () => {
-    fetch("https://dummyjson.com/users")
+    fetch(this.#baseUrl)
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
   static getUser = (id) => {
-    fetch(`https://dummyjson.com/users/${id}`)
+    fetch(`${this.#baseUrl}/${id}`)
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
   static searchUsers = (query) => {
-    fetch(`https://dummyjson.com/users/search?q=${query}`)
+    fetch(`${this.#baseUrl}/search?q=${query}`)
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
   static filterUsers = async (key, value) => {
     try {
-      const url = new URL("https://dummyjson.com/users/filter");
+      const url = new URL(`${this.#baseUrl}/filter`);
       url.searchParams.set("key", key);
       url.searchParams.set("value", value);
       const res = await fetch(url);
       const data = await res.json();
       console.log(data);
     } catch (err) {
-      debugger;
       console.log(err);
     }
   };
   static paginateUsers = async (limit, skip) => {
     try {
-      const url = new URL("https://dummyjson.com/users");
+      const url = new URL(this.#baseUrl);
       url.searchParams.set("limit", limit);
       url.searchParams.set("skip", skip);
       const res = await fetch(url);
@@ -44,7 +44,7 @@ class UserService {
   };
   static getUserCart = async (id) => {
     try {
-      const res = await fetch(`https://dummyjson.com/users/${id}/carts`);
+      const res = await fetch(`${this.#baseUrl}/${id}/carts`);
       const data = await res.json();
       console.log(data);
     } catch (err) {
@@ -53,7 +53,7 @@ class UserService {
   };
   static getUserPosts = async (id) => {
     try {
-      const res = await fetch(`https://dummyjson.com/users/${id}/posts`);
+      const res = await fetch(`${this.#baseUrl}/${id}/posts`);
       const data = await res.json();
       console.log(data);
     } catch (err) {
@@ -62,7 +62,7 @@ class UserService {
   };
   static getUserTodos = async (id) => {
     try {
-      const res = await fetch(`https://dummyjson.com/users/${id}/todos`);
+      const res = await fetch(`${this.#baseUrl}/${id}/todos`);
       const data = await res.json();
       console.log(data);
     } catch (err) {
@@ -71,7 +71,7 @@ class UserService {
   };
   static addUser = async (body) => {
     try {
-      const res = await fetch(`https://dummyjson.com/users/add`, {
+      const res = await fetch(`${this.#baseUrl}/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -84,7 +84,7 @@ class UserService {
   };
   static updateUser = async (id, body) => {
     try {
-      const res = await fetch(`https://dummyjson.com/users/${id}`, {
+      const res = await fetch(`${this.#baseUrl}/${id}`, {
         method: "PUT" /* or PATCH */,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -97,7 +97,7 @@ class UserService {
   };
   static deleteUser = async (id) => {
     try {
-      const res = await fetch(`https://dummyjson.com/users/${id}`, {
+      const res = await fetch(`${this.#baseUrl}/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
