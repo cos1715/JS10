@@ -1,0 +1,23 @@
+.background {
+  background-color: aquamarine;
+  transition: all 0.3s;
+}
+
+.background-darkcyan {
+  background-color: darkcyan;
+}
+
+@keyframes bg {
+  from {
+    background-color: aquamarine;
+  }
+  to {
+    background-color: darkcyan;
+  }
+}
+
+.ani {
+  animation-name: bg;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
