@@ -7,6 +7,42 @@
   background-color: darkcyan;
 }
 
+.success {
+  background-color: rgb(5, 209, 5);
+  color: white;
+}
+.error {
+  background-color: red;
+  color: white;
+}
+
+.style-div {
+  min-height: 8px;
+  margin: 4px;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: darkorchid;
+  color: white;
+}
+
+.my-animation {
+  animation-name: infiniteBackground;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes infiniteBackground {
+  0% {
+    background-color: darkcyan;
+  }
+  50% {
+    background-color: aquamarine;
+  }
+  100% {
+    background-color: darkcyan;
+  }
+}
+
 @keyframes bg {
   from {
     background-color: aquamarine;
