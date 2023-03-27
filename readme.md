@@ -1,22 +1,19 @@
 # JS Homework
 
-Feel free to modify test data or add new data
-It will help for better testing
+## Github users
 
-## Server Mock
+Fetch github users https://api.github.com/users
+Show avatar, name, nickname, repos count, number of followers.  
+Load user organisations and show their images in card  
+\* Extra task add loading indicator
 
-Create class **UserService**  
-Implement every scenario from [dummy users BE](https://dummyjson.com/docs/users) in your class  
-For each scenario create new method  
-Methods can be static  
-Read response from BE and console.log it or store it in class properties  
-Don't forget to catch errors when request failed
+You may browse for design examples
+[Design examples](https://codepen.io/tag/user-card?cursor=ZD0xJm89MCZwPTE=)
 
-\*Extra task: Delete users with ids 1,2,3,4 and random id from 5 to 10000 simultaneously  
-Use Promise.allSettled for this task
+<!-- // Cats
+// 'x-api-key': live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp
+// as a query string parameter e.g. 'api_key=live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp'
 
-```javascript
-class UserService {
-  // your code
-}
-```
+// NASA
+// const url = new URL("https://api.nasa.gov/planetary/apod");
+// url.searchParams.set("api_key", "2W7aoCKRPO9VadOE4cBhh8LHqiynai2NQ1F8MnRi"); -->
