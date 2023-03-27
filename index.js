@@ -1,109 +1,158 @@
+import { Octokit } from "https://cdn.skypack.dev/octokit";
+
 class UserService {
-  static #baseUrl = "https://dummyjson.com/users";
-  static getAllUsers = () => {
-    fetch(this.#baseUrl)
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+  constructor() {
+    this.container = document.getElementById("root");
+    this.octokit = new Octokit({
+      auth: "YOUR_KEY",
+    });
+    this.render();
+  }
+  #baseUrl = "https://api.github.com/users";
+  createLoader = () => {
+    this.loader = document.createElement("div");
+    this.loader.classList.add("loading-indicator");
+    this.mountElement(this.loader);
   };
-  static getUser = (id) => {
-    fetch(`${this.#baseUrl}/${id}`)
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+  createCard = (user) => {
+    const card = document.createElement("div");
+    const userInfoDiv = this.createUserInfoBlock(user);
+    const userRepos = this.createRepos(user);
+    const userFollowers = this.createFollowers(user);
+
+    card.id = user.id;
+    card.classList.add("card");
+    card.append(userInfoDiv, userRepos, userFollowers);
+    this.mountElement(card);
   };
-  static searchUsers = (query) => {
-    fetch(`${this.#baseUrl}/search?q=${query}`)
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+  createUserInfoBlock = (user) => {
+    const userInfoDiv = document.createElement("div");
+    const img = document.createElement("img");
+    const userNamesDiv = this.createNames(user);
+
+    userInfoDiv.classList.add("user-info");
+
+    img.src = user.avatar_url;
+    img.classList.add("avatar");
+
+    userInfoDiv.append(img, userNamesDiv);
+
+    return userInfoDiv;
   };
-  static filterUsers = async (key, value) => {
+  createNames = (user) => {
+    const userNamesDiv = document.createElement("div");
+    const userName = document.createElement("h1");
+    const userLogin = document.createElement("p");
+    const link = document.createElement("a");
+
+    userNamesDiv.classList.add("user-name");
+
+    link.innerHTML = user.login;
+    link.href = user.html_url;
+    link.classList.add("link");
+
+    userLogin.append(link);
+
+    userName.innerHTML = user.name || "";
+
+    userNamesDiv.append(userName, userLogin);
+
+    return userNamesDiv;
+  };
+  createRepos = (user) => {
+    const p = document.createElement("p");
+    p.id = `repos-${user.id}`;
+    p.classList.add("h-20", "text-loading-indicator");
+
+    return p;
+  };
+  updateRepos = (user) => {
+    const p = document.getElementById(`repos-${user.id}`);
+    p.classList.toggle("text-loading-indicator");
+    p.innerHTML = `Repos: ${user.repos?.length}`;
+  };
+  createFollowers = (user) => {
+    const p = document.createElement("p");
+    p.id = `followers-${user.id}`;
+    p.classList.add("h-20", "text-loading-indicator");
+
+    return p;
+  };
+  updateFollowers = (user) => {
+    const p = document.getElementById(`followers-${user.id}`);
+    p.classList.toggle("text-loading-indicator");
+    p.innerHTML = `Followers: ${user.followers?.length}`;
+  };
+  createOrgs = (user) => {
+    const card = document.getElementById(user.id);
+    const div = document.createElement("div");
+    div.classList.add("orgs");
+
+    user.orgs.forEach((org) => {
+      const img = document.createElement("img");
+      img.src = org.avatar_url;
+      img.classList.add("org-image");
+      div.append(img);
+    });
+
+    card.append(div);
+  };
+  mountElement = (element) => {
+    this.container.append(element);
+  };
+  removeElement = (element) => {
+    element.remove();
+  };
+  getAllUsers = async () => {
     try {
-      const url = new URL(`${this.#baseUrl}/filter`);
-      url.searchParams.set("key", key);
-      url.searchParams.set("value", value);
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  static paginateUsers = async (limit, skip) => {
-    try {
-      const url = new URL(this.#baseUrl);
-      url.searchParams.set("limit", limit);
-      url.searchParams.set("skip", skip);
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  static getUserCart = async (id) => {
-    try {
-      const res = await fetch(`${this.#baseUrl}/${id}/carts`);
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  static getUserPosts = async (id) => {
-    try {
-      const res = await fetch(`${this.#baseUrl}/${id}/posts`);
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  static getUserTodos = async (id) => {
-    try {
-      const res = await fetch(`${this.#baseUrl}/${id}/todos`);
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  static addUser = async (body) => {
-    try {
-      const res = await fetch(`${this.#baseUrl}/add`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+      const res = await this.octokit.request("GET /users");
+      this.users = res.data;
+      res.data.forEach((user) => {
+        this.getUserOrgs(user);
+        this.getUserRepos(user);
+        this.getUserFollowers(user);
       });
-      const data = await res.json();
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
-  static updateUser = async (id, body) => {
+  getUserOrgs = async (user) => {
     try {
-      const res = await fetch(`${this.#baseUrl}/${id}`, {
-        method: "PUT" /* or PATCH */,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      const data = await res.json();
-      console.log(data);
+      const res = await this.octokit.request(`GET /users/${user.login}/orgs`);
+      user.orgs = res.data;
+      this.createOrgs(user);
     } catch (err) {
       console.log(err);
     }
   };
-  static deleteUser = async (id) => {
+  getUserRepos = async (user) => {
     try {
-      const res = await fetch(`${this.#baseUrl}/${id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      console.log(data);
+      const res = await this.octokit.request(`GET /users/${user.login}/repos`);
+      user.repos = res.data;
+      this.updateRepos(user);
     } catch (err) {
       console.log(err);
     }
+  };
+  getUserFollowers = async (user) => {
+    try {
+      const res = await this.octokit.request(
+        `GET /users/${user.login}/followers`
+      );
+      user.followers = res.data;
+      this.updateFollowers(user);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  render = async () => {
+    this.createLoader();
+    await this.getAllUsers();
+    this.removeElement(this.loader);
+    this.users.forEach((user) => {
+      this.createCard(user);
+    });
   };
 }
+
+const userService = new UserService();
