@@ -2,11 +2,14 @@
 
 ## Github users
 
-Fetch github users https://api.github.com/users
+Fetch github users https://api.github.com/users  
 Show avatar, name, nickname, repos count, number of followers.  
 Load user organisations and show their images in card  
-P.S. if you have troubles with api just get users and render cards with img and name  
-\* Extra task add loading indicator
+\* Extra task add loading indicator  
+P.S. If you have troubles with api just get users and render cards with img and name
+
+You may browse for design examples
+[Design examples](https://codepen.io/tag/user-card?cursor=ZD0xJm89MCZwPTE=)
 
 ###Tips
 
@@ -31,9 +34,6 @@ new Octokit({
   auth: "YOUR_KEY",
 });
 ```
-
-You may browse for design examples
-[Design examples](https://codepen.io/tag/user-card?cursor=ZD0xJm89MCZwPTE=)
 
 <!-- // Cats
 // 'x-api-key': live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp
