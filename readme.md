@@ -27,7 +27,8 @@ You may browse for design examples
 import { Octokit } from "https://cdn.skypack.dev/octokit";
 ```
 
-> Create an [access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+> Create an [access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)  
+> And use it in app
 
 ```js script
 new Octokit({
