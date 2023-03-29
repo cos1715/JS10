@@ -36,6 +36,8 @@ new Octokit({
 });
 ```
 
+> Click **Go Live** btn at right bottom corner of vs code to start project
+
 <!-- // Cats
 // 'x-api-key': live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp
 // as a query string parameter e.g. 'api_key=live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp'
