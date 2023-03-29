@@ -12,3 +12,11 @@ if clicked with shift highlight all li from prev li to new li
 
 P.S. This logic should be similar to windows folder select
 P.P.S. Continue work on project
+
+## Pointer
+
+Add click event listener  
+On click create dot shaped element  
+Dot element should appear on click place
+
+P.S. Explore event object
