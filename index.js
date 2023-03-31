@@ -32,3 +32,17 @@ list.addEventListener("click", (event) => {
     }
   }
 });
+
+document.addEventListener("click", (e) => {
+  const div = document.createElement("div");
+  div.style.width = "8px";
+  div.style.height = "8px";
+  div.style.borderRadius = "50%";
+  div.style.backgroundColor = "black";
+  div.style.position = "absolute";
+  div.style.top = `${e.pageY}px`;
+  div.style.left = `${e.pageX}px`;
+  console.log(e);
+  document.body.append(div);
+  return false;
+});
