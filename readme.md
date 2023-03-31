@@ -1,47 +1,22 @@
 # JS Homework
 
-## Github users
+## Click event
 
-Fetch github users https://api.github.com/users  
-Show avatar, name, nickname, repos count, number of followers.  
-Load user organisations and show their images in card  
-\* Extra task add loading indicator  
-P.S. If you have troubles with api just get users and render cards with img and name
+Create ul element and 10 li elements inside  
+Add event listener to ul  
+Highlight li on click  
+If clicked on same li remove highlight  
+If clicked on another li add highlight to new li and remove from prev li  
+If clicked with ctrl highlight prev li and new li  
+if clicked with shift highlight all li from prev li to new li
 
-You may browse for design examples
-[Design examples](https://codepen.io/tag/user-card?cursor=ZD0xJm89MCZwPTE=)
+P.S. This logic should be similar to windows folder select
+P.P.S. Continue work on project
 
-###Tips
+## Pointer
 
-> Add [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension  
-> Add type module script tag
+Add click event listener  
+On click create dot shaped element  
+Dot element should appear on click place
 
-```js script
-<script type="module" src="./file.js"></script>
-```
-
-> Add import in your file  
-> [Documentation](https://github.com/octokit/octokit.js) about library
-
-```js script
-import { Octokit } from "https://cdn.skypack.dev/octokit";
-```
-
-> Create an [access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)  
-> And use it in app
-
-```js script
-new Octokit({
-  auth: "YOUR_KEY",
-});
-```
-
-> Click **Go Live** btn at right bottom corner of vs code to start project
-
-<!-- // Cats
-// 'x-api-key': live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp
-// as a query string parameter e.g. 'api_key=live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp'
-
-// NASA
-// const url = new URL("https://api.nasa.gov/planetary/apod");
-// url.searchParams.set("api_key", "2W7aoCKRPO9VadOE4cBhh8LHqiynai2NQ1F8MnRi"); -->
+P.S. Explore event object
