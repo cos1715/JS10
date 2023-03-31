@@ -35,11 +35,3 @@ new Octokit({
   auth: "YOUR_KEY",
 });
 ```
-
-<!-- // Cats
-// 'x-api-key': live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp
-// as a query string parameter e.g. 'api_key=live_KM2XaepFFn85vLPmcyoNXg6HNdCzsJHhSDYH83X5JxdNBrv8zlqTRCFPrQUdVJEp'
-
-// NASA
-// const url = new URL("https://api.nasa.gov/planetary/apod");
-// url.searchParams.set("api_key", "2W7aoCKRPO9VadOE4cBhh8LHqiynai2NQ1F8MnRi"); -->
