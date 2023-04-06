@@ -12,7 +12,15 @@
     "lint-fix": "eslint --fix --ext .ts src/",
     "format": "prettier --write \"src/**/*.ts\"",
     "style-lint": "stylelint \"**/*.scss\"",
-    "style-lint-fix": "stylelint --fix \"**/*.scss\""
+    "style-lint-fix": "stylelint --fix \"**/*.scss\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint",
+      "npm run format"
+    ],
+    "*.scss": "npm run style-lint"
   },
   "repository": {
     "type": "git",
@@ -25,18 +33,6 @@
     "url": "https://github.com/cos1715/JS10/issues"
   },
   "homepage": "https://github.com/cos1715/JS10#readme",
-  "husky": {
-    "hook": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "npm run lint",
-      "npm run format"
-    ],
-    "*.scss": "npm run style-lint"
-  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
@@ -46,13 +42,13 @@
     "dotenv": "^16.0.3",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lint-staged": "^13.2.0",
     "prettier": "2.8.7",
     "sass": "^1.60.0",
     "stylelint": "^15.4.0",
     "stylelint-config-standard-scss": "^7.0.1",
-    "typescript": "^4.9.3",
-    "vite": "^4.2.0"
+    "typescript": "^4.9.5",
+    "vite": "^4.2.1"
   }
 }
