@@ -4,10 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.scss" />
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <form id="url-form">
+        <label for="url" class="text-label">URL</label>
+        <input id="url" class="text-input" type="text" name="url" />
+
+        <label for="qpn" class="text-label">Query param name</label>
+        <input id="qpn" class="text-input" type="text" name="qpn" />
+
+        <label for="qpv" class="text-label">Query param value</label>
+        <input id="qpv" class="text-input" type="text" name="qpv" />
+
+        <label for="url-id" class="text-label">ID</label>
+        <input id="url-id" class="text-input" type="text" name="urlId" />
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <form id="local-form">
+        <label for="username" class="text-label">User Name</label>
+        <input id="username" class="text-input" type="text" name="username" />
+
+        <label for="email" class="text-label">Email</label>
+        <input id="email" class="text-input" type="text" name="email" />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

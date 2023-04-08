@@ -1,2 +1,2 @@
 export const STORAGE_KEYS = {};
-export const API_KEY = '';
+export const API_KEY = "";
