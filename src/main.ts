@@ -1,75 +1,62 @@
-interface UrlForm extends HTMLFormElement {
-  url: HTMLInputElement;
-  qpn: HTMLInputElement;
-  qpv: HTMLInputElement;
-  urlId: HTMLInputElement;
-}
-interface ILocalForm extends HTMLFormElement {
-  username: HTMLInputElement;
-  email: HTMLInputElement;
-}
+import { Calculator } from "./calculator";
 
-const urlForm = document.getElementById("url-form") as UrlForm | null;
+const calculator = new Calculator();
+const numberButtons: NodeListOf<HTMLButtonElement> =
+  document.querySelectorAll("[value]");
+const operatorButtons: NodeListOf<HTMLButtonElement> =
+  document.querySelectorAll(".operator");
+const clearButton: HTMLButtonElement | null =
+  document.querySelector(".all-clear");
+const deleteButton: HTMLButtonElement | null =
+  document.querySelector(".delete");
+const equalsButton: HTMLButtonElement | null =
+  document.querySelector(".equal-sign");
+const decimalButton: HTMLButtonElement | null =
+  document.querySelector(".decimal");
 
-if (urlForm) {
-  urlForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const urlInput = urlForm["url"].value;
-    const queryName = urlForm["qpn"].value;
-    const queryValue = urlForm["qpv"].value;
-    const urlId = urlForm["urlId"].value;
-
-    const url = new URL(urlInput);
-    url.searchParams.set(queryName, queryValue);
-    url.hash = urlId;
-
-    location.assign(url.toString());
-  });
-}
-const localForm = document.getElementById("local-form") as ILocalForm | null;
-
-if (localForm) {
-  const username = localForm["username"];
-  const email = localForm["email"];
-
-  const emailValue = localStorage.getItem("username") || "";
-  const userValue = localStorage.getItem("email") || "";
-  username.value = userValue;
-  email.value = emailValue;
-
-  username.addEventListener("keyup", (e) => {
-    const target = e.target as HTMLInputElement;
-    localStorage.setItem("username", target.value);
-  });
-
-  email.addEventListener("keyup", (e) => {
-    const target = e.target as HTMLInputElement;
-    localStorage.setItem("email", target.value);
-  });
-
-  localForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
+if (numberButtons) {
+  numberButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      calculator.appendNumber(button.value);
+      calculator.updateDisplay();
+    });
   });
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const readCookie = (name: string): string | null => {
-  const cookies = document.cookie.split("; ");
-  let result = null;
-
-  cookies.forEach((cookie) => {
-    const [key, value] = cookie.split("=");
-    if (key === name) {
-      result = value;
-    }
+if (operatorButtons) {
+  operatorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      calculator.chooseOperator(button.value);
+      calculator.updateDisplay();
+    });
   });
+}
 
-  return result;
-};
+if (clearButton) {
+  clearButton.addEventListener("click", () => {
+    calculator.clear();
+    calculator.updateDisplay();
+  });
+}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const deleteCookie = (name: string) => {
-  document.cookie = `${name}=1; expires=${new Date("1970").toUTCString()}`;
-};
+if (deleteButton) {
+  deleteButton.addEventListener("click", () => {
+    calculator.delete();
+    calculator.updateDisplay();
+  });
+}
+
+if (equalsButton) {
+  equalsButton.addEventListener("click", () => {
+    calculator.compute();
+    calculator.updateDisplay();
+  });
+}
+
+if (decimalButton) {
+  decimalButton.addEventListener("click", () => {
+    if (calculator.currentOperand.includes(".")) return;
+    calculator.appendNumber(decimalButton.value);
+    calculator.updateDisplay();
+  });
+}

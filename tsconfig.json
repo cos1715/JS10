@@ -13,8 +13,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
-    "paths": { "const": ["./src/const"] }
+    "skipLibCheck": true
   },
   "include": ["src"]
 }

@@ -8,32 +8,27 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app">
-      <form id="url-form">
-        <label for="url" class="text-label">URL</label>
-        <input id="url" class="text-input" type="text" name="url" />
-
-        <label for="qpn" class="text-label">Query param name</label>
-        <input id="qpn" class="text-input" type="text" name="qpn" />
-
-        <label for="qpv" class="text-label">Query param value</label>
-        <input id="qpv" class="text-input" type="text" name="qpv" />
-
-        <label for="url-id" class="text-label">ID</label>
-        <input id="url-id" class="text-input" type="text" name="urlId" />
-
-        <button type="submit">Submit</button>
-      </form>
-
-      <form id="local-form">
-        <label for="username" class="text-label">User Name</label>
-        <input id="username" class="text-input" type="text" name="username" />
-
-        <label for="email" class="text-label">Email</label>
-        <input id="email" class="text-input" type="text" name="email" />
-
-        <button type="submit">Submit</button>
-      </form>
+    <div class="calculator">
+      <input type="text" class="calculator-screen" value="0" disabled />
+      <div class="calculator-keys">
+        <button value="7">7</button>
+        <button value="8">8</button>
+        <button value="9">9</button>
+        <button class="operator" value="+">+</button>
+        <button value="4">4</button>
+        <button value="5">5</button>
+        <button value="6">6</button>
+        <button class="operator" value="-">-</button>
+        <button value="2">2</button>
+        <button value="3">3</button>
+        <button value="1">1</button>
+        <button class="operator" value="*">&times;</button>
+        <button class="decimal" value=".">.</button>
+        <button value="0">0</button>
+        <button class="all-clear" value="all-clear">AC</button>
+        <button class="operator" value="/">&divide;</button>
+        <button class="equal-sign" value="=">=</button>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
