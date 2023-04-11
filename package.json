@@ -1,0 +1,54 @@
+{
+  "name": "JS10",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Module project setup",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts src/",
+    "lint-fix": "eslint --fix --ext .ts src/",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "style-lint": "stylelint \"**/*.scss\"",
+    "style-lint-fix": "stylelint --fix \"**/*.scss\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint",
+      "npm run format"
+    ],
+    "*.scss": "npm run style-lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cos1715/JS10.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cos1715/JS10/issues"
+  },
+  "homepage": "https://github.com/cos1715/JS10#readme",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.0",
+    "prettier": "2.8.7",
+    "sass": "^1.60.0",
+    "stylelint": "^15.4.0",
+    "stylelint-config-standard-scss": "^7.0.1",
+    "typescript": "^4.9.5",
+    "vite": "^4.2.1"
+  }
+}
